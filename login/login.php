@@ -1,27 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller Registration</title>
+    <title>Seller Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card mt-5">
                     <div class="card-header text-center">
-                        <h3><i class="fas fa-user-plus"></i> Seller Registration</h3>
+                        <h3>Seller Login</h3>
                     </div>
                     <div class="card-body">
-                        <form action="register_process.php" method="POST">
-                            <div class="form-group">
-                                <label for="name"><i class="fas fa-user"></i> Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
-                            </div>
+                        <form action="login_process.php" method="POST">
                             <div class="form-group">
                                 <label for="email"><i class="fas fa-envelope"></i> Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
@@ -30,24 +25,17 @@
                                 <label for="password"><i class="fas fa-lock"></i> Password</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
-                            <div class="form-group">
-                                <label for="store_name"><i class="fas fa-store"></i> Store Name</label>
-                                <input type="text" class="form-control" id="store_name" name="store_name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-                                <input type="text" class="form-control" id="phone" name="phone" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Register</button>
+                            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
                         </form>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="login.php">Already have an account? Login here</a>
+                        <a href="register.php">Don't have an account? Register here</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
