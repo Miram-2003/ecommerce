@@ -24,7 +24,7 @@
                         <h3><i class="fas fa-user-plus"></i> Seller Registration</h3>
                     </div>
                     <div class="card-body">
-                        <form action="register_process.php" method="POST">
+                        <form action="../actions/store_register.php" method="POST">
                             <div class="form-group">
                                 <label for="name"><i class="fas fa-user"></i> Name</label>
                                 <input type="text" class="form-control" id="name" name="name" required>

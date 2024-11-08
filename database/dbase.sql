@@ -13,7 +13,8 @@ CREATE TABLE Users (
 CREATE TABLE Stores (
     store_id INT PRIMARY KEY AUTO_INCREMENT,
     fullName VARCHAR(100) NOT NULL, 
-    email VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NULL,
+    contact INT(20) NOT NULL,
     store_name VARCHAR(100) NOT NULL,
     country VARCHAR(100) NOT NULL,
     District VARCHAR(100) NOT NULL,
