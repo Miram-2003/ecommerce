@@ -12,15 +12,15 @@ CREATE TABLE Users (
 -- 2. Stores Table (Referencing the User ID of Store Owners)
 CREATE TABLE Stores (
     store_id INT PRIMARY KEY AUTO_INCREMENT,
-    owner_id INT NOT NULL,  -- Foreign key to Users table
+    fullName VARCHAR(100) NOT NULL, 
+    email VARCHAR(100) UNIQUE NOT NULL,
     store_name VARCHAR(100) NOT NULL,
-    description TEXT,
-    address VARCHAR(255),
-    contact_email VARCHAR(100),
+    country VARCHAR(100) NOT NULL,
+    District VARCHAR(100) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (owner_id) REFERENCES Users(user_id) ON DELETE CASCADE
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   
 );
 
 -- 3. Categories Table

@@ -7,6 +7,13 @@
     <title>Seller Registration</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <style>
+    .form-control:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    }
+</style>
 </head>
 <body>
     <div class="container mt-5">
@@ -26,10 +33,7 @@
                                 <label for="email"><i class="fas fa-envelope"></i> Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
-                            <div class="form-group">
-                                <label for="password"><i class="fas fa-lock"></i> Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
+                            
                             <div class="form-group">
                                 <label for="store_name"><i class="fas fa-store"></i> Store Name</label>
                                 <input type="text" class="form-control" id="store_name" name="store_name" required>
@@ -38,12 +42,30 @@
                                 <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
                                 <input type="text" class="form-control" id="phone" name="phone" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Register</button>
+
+                            <div class="form-group">
+                                <label for="country"><i class="fas fa-globe"></i> Country</label>
+                                <input type="text" class="form-control" id="country" name="country" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zone"><i class="fas fa-map-marker-alt"></i> Zone/District</label>
+                                <input type="text" class="form-control" id="zone" name="zone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password"><i class="fas fa-lock"></i> Confirm Password</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-block"><i class="fas fa-paper-plane"></i> Register</button>
                         </form>
                     </div>
                     <div class="card-footer text-center">
                         <a href="login.php">Already have an account? Login here</a>
                     </div>
+
                 </div>
             </div>
         </div>
