@@ -1,7 +1,7 @@
 
 document.getElementById('registrationForm').addEventListener('submit', function (event) {
     event.preventDefault(); 
-    
+
     const name = document.getElementById('name').value.trim();
     const store = document.getElementById('store_name').value.trim();
     const email = document.getElementById('email').value.trim();
@@ -31,7 +31,7 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     const nameRegex = /^[a-zA-Z\s]{3,50}$/; // 3-50 characters, letters only
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Email format
     const phoneRegex = /^\d{10,15}$/; // 10-15 digits
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 8 characters, one letter, one number
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$.,-!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // At least 8 characters, one letter, one number
     const textFieldRegex = /^[a-zA-Z\s]{2,50}$/;
 
 
@@ -73,10 +73,10 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     }
 
 
-    if (!storeName || storeName === ' ') {
+    if (!store || store === ' ') {
         document.getElementById('storeNameError').textContent = 'Store Name is required.';
         isValid = false;
-    } else if (!textFieldRegex.test(storeName)) {
+    } else if (!textFieldRegex.test(store)) {
         document.getElementById('storeNameError').textContent = 'Store Name must be 2-50 characters long.';
         isValid = false;
     }
@@ -110,16 +110,11 @@ document.getElementById('registrationForm').addEventListener('submit', function 
 
     // Validate Logo
     if (logo) {
-        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
         const maxSize = 2 * 1024 * 1024; // 2 MB
 
         if (!allowedTypes.includes(logo.type)) {
             document.getElementById('logoError').textContent = 'Only JPEG, PNG, and GIF files are allowed.';
-            isValid = false;
-        }
-
-        if (logo.size > maxSize) {
-            document.getElementById('logoError').textContent = 'File size must not exceed 2 MB.';
             isValid = false;
         }
     }
@@ -128,10 +123,15 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     if (!password || password === ' ') {
         document.getElementById('passwordError').textContent = 'Password is required.';
         isValid = false;
-    } else if (password.length < 8 || !passwordRegex.test(password)) {
+    } else if (password.length < 8) {
         document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long.';
         isValid = false;
     }
+    else if (!passwordRegex.test(password)) {
+        document.getElementById('passwordError').textContent = 'Password must contain at least one letter and one number.';
+        isValid = false;
+    }
+
 
     if (!confirmPassword || confirmPassword === ' ') {
         document.getElementById('confirmPasswordError').textContent = 'Confirm Password is required.';
@@ -144,6 +144,7 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     
     if (isValid) {
         
+        console.log("Submitting the form");
         this.submit();
     }
 
