@@ -11,11 +11,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card mt-5">
-                    <div class="card-header text-center">
+                <div class="mt-5">
+                    <div class=" text-center">
                         <h3>Seller Login</h3>
                     </div>
-                    <div class="card-body">
+                    <
                         <form action="login_process.php" method="POST">
                             <div class="form-group">
                                 <label for="email"><i class="fas fa-envelope"></i> Email</label>
@@ -27,7 +27,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
                         </form>
-                    </div>
+                    
                     <div class="card-footer text-center">
                         <a href="register.php">Don't have an account? Register here</a>
                     </div>
