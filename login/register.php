@@ -48,6 +48,10 @@
                                 <input type="text" class="form-control" id="country" name="country" required>
                             </div>
                             <div class="form-group">
+                                <label for="zone"><i class="fas fa-map-marker-alt"></i> Region</label>
+                                <input type="text" class="form-control" id="region" name="region" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="zone"><i class="fas fa-map-marker-alt"></i> Zone/District</label>
                                 <input type="text" class="form-control" id="zone" name="zone" required>
                             </div>
