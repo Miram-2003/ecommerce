@@ -35,21 +35,31 @@ require_once("../classes/store_class.php");
     }
 
     // Login a seller
-   function loginSeller($email, $password) {
+    function loginSeller($email, $password) {
         $store = new store_class();
-        $seller = $store->validateLogin($email, $password);
-
-        if ($seller) {
-            // Start a session and store seller info
-            session_start();
-            $_SESSION['seller_id'] = $seller['id'];
-            $_SESSION['seller_name'] = $seller['fullName'];
-            return ['success' => true, 'message' => 'Login successful.'];
+        $loginResult = $store->validateLogin($email, $password);
+    
+        if ($loginResult['success']) {
+            // Login successful, start a session and store seller info
+        
+            $seller = $loginResult['seller'];
+            $_SESSION['seller_id'] = $seller['store_id'];
+            $_SESSION['seller_name'] = $seller['store_name'];
+            $_SESSION['email'] = $seller['email'];
+           
+            header("Location: ../seller/dashboard.php");
+            exit();
         } else {
-            return ['success' => false, 'message' => 'Invalid email or password.'];
+            // Login failed, set error message
+          
+            $_SESSION['error'] = $loginResult['error'];
+            
+           
+            header("Location: ../login/login.php");
+            exit();
         }
     }
-
+    
     // Fetch all sellers (admin feature)
    function getAllSellers() {
         $store = new store_class();
@@ -57,4 +67,3 @@ require_once("../classes/store_class.php");
     }
 
 ?>
-M.I.R.2003,iam
