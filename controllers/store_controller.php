@@ -47,7 +47,7 @@ require_once("../classes/store_class.php");
             $_SESSION['seller_name'] = $seller['store_name'];
             $_SESSION['email'] = $seller['email'];
            
-            header("Location: ../seller/dashboard.php");
+            header("Location: ../sellers_view/dashboard.php");
             exit();
         } else {
             // Login failed, set error message
