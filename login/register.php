@@ -1,3 +1,14 @@
+
+<?php
+session_start();
+
+$errors = $_SESSION['errors'] ?? [];
+$old = $_SESSION['old'] ?? [];
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,56 +61,57 @@
                     <form id="registrationForm" action="../actions/store_register.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name"><i class="fas fa-user"></i> Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                            <div id="nameError" class="error"></div>
+                            <input type="text" class="form-control" id="name" name="name" required value="<?= htmlspecialchars($old['name'] ?? '') ?>">
+                            <div id="nameError" class="error"><?= htmlspecialchars($errors['name'] ?? '') ?></div>
                         </div>
                         <div class="form-group">
                             <label for="email"><i class="fas fa-envelope"></i> Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                            <div id="emailError" class="error"></div>
+                            <input type="email" class="form-control" id="email" name="email" required  value="<?= htmlspecialchars($old['email'] ?? '') ?>">
+                            <div id="emailError" class="error"><?= htmlspecialchars($errors['email'] ?? '') ?></div>
+                            <div id="emailError" class="error"><?= htmlspecialchars( $errors['emailexist']  ?? '') ?></div>
                             
                         </div>
                         <div class="form-group">
                             <label for="store_name"><i class="fas fa-store"></i> Store Name</label>
-                            <input type="text" class="form-control" id="store_name" name="store_name" required>
-                            <div id="storeError" class="error"></div>
+                            <input type="text" class="form-control" id="store_name" name="store_name" required value="<?= htmlspecialchars($old['storeName'] ?? '') ?>">
+                            <div id="storeError" class="error"><?= htmlspecialchars($errors['store'] ?? '') ?></div>
                         </div>
                         <div class="form-group">
                             <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-                            <input type="text" class="form-control" id="phone" name="phone" required>
-                            <div id="phoneError" class="error"></div>
+                            <input type="text" class="form-control" id="phone" name="phone" required value="<?= htmlspecialchars($old['phone'] ?? '') ?>">
+                            <div id="phoneError" class="error"><?= htmlspecialchars($errors['phone'] ?? '') ?></div>
                         </div>
                         <div class="form-group">
                             <label for="country"><i class="fas fa-globe"></i> Country</label>
-                            <input type="text" class="form-control" id="country" name="country" required>
-                            <div id="countryError" class="error"></div>
+                            <input type="text" class="form-control" id="country" name="country" required value="<?= htmlspecialchars($old['country'] ?? '') ?>">
+                            <div id="countryError" class="error"><?= htmlspecialchars($errors['country'] ?? '') ?></div>
                         </div>
                         <div class="form-group">
                             <label for="region"><i class="fas fa-map-marker-alt"></i> Region</label>
-                            <input type="text" class="form-control" id="region" name="region" required>
-                            <div id="regionError" class="error"></div>
+                            <input type="text" class="form-control" id="region" name="region" required value="<?= htmlspecialchars($old['region'] ?? '') ?>">
+                            <div id="regionError" class="error"><?= htmlspecialchars($errors['region'] ?? '') ?></div>
                         </div>
                         <div class="form-group">
                             <label for="zone"><i class="fas fa-map-marker-alt"></i>City/Town</label>
-                            <input type="text" class="form-control" id="city" name="city" required>
-                            <div id="cityError" class="error"></div>
+                            <input type="text" class="form-control" id="city" name="city" required value="<?= htmlspecialchars($old['city'] ?? '') ?>">
+                            <div id="cityError" class="error"><?= htmlspecialchars($errors['city'] ?? '') ?></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="logo"><i class="fas fa-store-alt"></i>City/Town</label>
-                            <input type="file" class="form-control" id="logo" name="logo">
-                            <div id="logoError" class="error"></div>
+                            <label for="logo"><i class="fas fa-store-alt"></i>Store image/logo</label>
+                            <input type="file" class="form-control" id="logo" name="image">
+                            <div id="logoError" class="error"><?= htmlspecialchars($errors['imageName'] ?? '') ?></div>
                         </div>
 
                         <div class="form-group">
                             <label for="password"><i class="fas fa-lock"></i> Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                            <div id="passwordError" class="error"></div>
+                            <input type="password" class="form-control" id="password" name="password" required value="<?= htmlspecialchars($old['password'] ?? '') ?>">
+                            <div id="passwordError" class="error"><?= htmlspecialchars($errors['password'] ?? '') ?></div>
                         </div>
                         <div class="form-group">
                             <label for="confirm_password"><i class="fas fa-lock"></i> Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-                            <div id="confirmPasswordError" class="error"></div>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required >
+                            <div id="confirmPasswordError" class="error"><?= htmlspecialchars($errors['conpass'] ?? '') ?></div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Register</button>
                     </form>
@@ -119,7 +131,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src = "../js/register.js"></script>
+    <!-- <script src = "../js/register.js"></script> -->
 </body>
 </html>
 

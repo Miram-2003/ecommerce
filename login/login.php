@@ -15,7 +15,7 @@
                     <div class=" text-center">
                         <h3>Seller Login</h3>
                     </div>
-                    <
+                    
                         <form action="login_process.php" method="POST">
                             <div class="form-group">
                                 <label for="email"><i class="fas fa-envelope"></i> Email</label>

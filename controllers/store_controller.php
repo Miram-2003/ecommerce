@@ -1,17 +1,16 @@
 <?php
 require_once("../classes/store_class.php");
-
     function registerSeller($data) {
         $store = new store_class();
-        if (empty($data['name']) || empty($data['email']) || empty($data['storeName']) ||
-            empty($data['phone']) || empty($data['country']) || empty($data['zone']) || empty($data['password'])) {
-            return ['success' => false, 'message' => 'All fields are required.'];
+        
+     
+        if (($store->emailExists($data['email']))) {
+            $_SESSION['errors'] = ['email' => 'Email already exists.'];
+          
+            header('Location: ../login/register.php') ;
+            
         }
 
-        // Check if the email already exists
-        if ($store->emailExists($data['email'])) {
-            return ['success' => false, 'message' => 'Email already exists.'];
-        }
 
         // Register the seller
         $result = $store->registerStore(
@@ -20,20 +19,25 @@ require_once("../classes/store_class.php");
             $data['storeName'],
             $data['phone'],
             $data['country'],
-            $data['zone'],
-            $data['password']
+            $data['region'],
+            $data['city'],
+            $data['password'],
+            $data["imageName"]
         );
 
         if ($result) {
-            return ['success' => true, 'message' => 'Seller registered successfully.'];
+            header('Location: ../login/login.php');
+            exit();
         } else {
-            return ['success' => false, 'message' => 'Failed to register seller. Please try again.'];
+            header('Location: ../login/register.php');
+            exit();
         }
     }
 
     // Login a seller
    function loginSeller($email, $password) {
-        $seller = validateLogin($email, $password);
+        $store = new store_class();
+        $seller = $store->validateLogin($email, $password);
 
         if ($seller) {
             // Start a session and store seller info
@@ -48,7 +52,9 @@ require_once("../classes/store_class.php");
 
     // Fetch all sellers (admin feature)
    function getAllSellers() {
-        return $this->storeModel->getAllSellers();
+        $store = new store_class();
+        return $store->getAllSellers();
     }
 
 ?>
+M.I.R.2003,iam
