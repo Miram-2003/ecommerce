@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($data['name']) || $data['name']== ' ') {
         $error['name'] = "Username is required or cannot be empty.";
-    }elseif(!preg_match('/^[a-z A-Z_]{3,20}$/', $data['name'])){
+    }elseif(!preg_match('/^[a-z A-Z_]{3,30}$/', $data['name'])){
         $error['name'] = "User name can not contain numbers or special symbols";
     }
 
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         if (empty($errors['image'])) {
             // Save the uploaded file
-            $uploadDir = __DIR__ . "/storeimages/";
+            $uploadDir ="../storeimages/";
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0777, true); // Create the directory if not exists
             }

@@ -1,4 +1,8 @@
 <?php
+
+require_once ("../functions/cat_function.php");
+
+require_once("../functions/product_function.php");
 require_once('../settings/core.php');
 
 check_login(); 
@@ -107,7 +111,7 @@ echo $img;
     <nav class="sidebar">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="../seller_view/dashboard.php">
+                <a class="nav-link active" href="../sellers_view/dashboard.php">
                     <i class="fas fa-home"></i> Dashboard
                 </a>
             </li>
@@ -117,7 +121,7 @@ echo $img;
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../sellers_view/seller_order.php">
+                <a class="nav-link" href="#">
                     <i class="fas fa-shopping-cart"></i> Orders
                 </a>
             </li>
@@ -143,10 +147,19 @@ echo $img;
     
     <main>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
+            <h1 class="h2">Manage Products</h1>
         </div>
-        <p>Welcome to your dashboard! Here’s where you’ll see an overview of your store’s performance.</p>
-        <p>Scroll down to test the fixed sidebar and navbar functionality.</p>
+        
+        <form action ="../actions/addproduct.php" method= "post" enctype="multipart/form-data">
+            product category :<?php echo display_cat_option(); ?><br><br>
+            
+            product name: <input name ="title"><br><br>
+            product price: <input name ="price"><br><br>
+            product description: <input name="desc"><br><br>
+            product image: <input type="file" name ="image" accept="image/*"> <br><br>
+            produt keyword: <input name="word">
+    
+            <button> submit </button>
         <div style="height: 1500px;">Extra content to scroll...</div>
     </main>
 
