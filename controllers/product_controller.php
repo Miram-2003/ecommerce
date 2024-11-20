@@ -2,9 +2,9 @@
 require("../classes/product_class.php");
 
 
-function add_product_ctr($pro_cat, $prod_brand, $prod_title, $prod_price, $prod_des, $prod_key){
+function add_product_ctr($user_id, $pro_mcat, $pro_scat, $prod_name, $prod_price, $prod_des, $prod_qty, $prod_img){
     $addproduct = new product_class();
-    return $addproduct->add_product($pro_cat, $prod_brand, $prod_title, $prod_price, $prod_des, $prod_key);
+    return $addproduct->add_product($user_id, $pro_mcat, $pro_scat, $prod_name, $prod_price, $prod_des, $prod_qty, $prod_img);
 }
 
 

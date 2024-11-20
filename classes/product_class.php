@@ -4,21 +4,25 @@ require_once("../settings/db_class.php");
 class product_class extends db_connection{
 
 
-        public function add_product($pro_cat, $prod_brand, $prod_title, $prod_price, $prod_des, $prod_key) {
+        public function add_product($user_id, $pro_mcat, $pro_scat, $prod_name, $prod_price, $prod_des, $prod_qty, $prod_img) {
             $ndb = new db_connection();
-            $prod_title = mysqli_real_escape_string($ndb->db_conn(), $prod_title);
-            $prod_price = mysqli_real_escape_string($ndb->db_conn(), $prod_price);
-            $prod_des = mysqli_real_escape_string($ndb->db_conn(), $prod_des); // Corrected
-            $prod_key = mysqli_real_escape_string($ndb->db_conn(), $prod_key);
-            $prod_brand = mysqli_real_escape_string($ndb->db_conn(), $prod_brand); // Corrected
+			$id = mysqli_real_escape_string($ndb->db_conn(), $user_id);
+            $name = mysqli_real_escape_string($ndb->db_conn(), $prod_name);
+            $price = mysqli_real_escape_string($ndb->db_conn(), $prod_price);
+            $des = mysqli_real_escape_string($ndb->db_conn(), $prod_des); // Corrected
+            $scat = mysqli_real_escape_string($ndb->db_conn(), $pro_scat);
+            $mcat = mysqli_real_escape_string($ndb->db_conn(), $pro_mcat); 
+			$qty = mysqli_real_escape_string($ndb->db_conn(), $prod_qty);
+			$img= mysqli_real_escape_string($ndb->db_conn(), $prod_img);
     
-            $sql = "INSERT INTO `products`(`product_cat`, `product_brand`, `product_title`, `product_price`, `product_desc`, `product_keywords`) 
-                    VALUES ('$pro_cat','$prod_brand','$prod_title','$prod_price','$prod_des','$prod_key')";
+            $sql = "INSERT INTO `products`( `store_id`, `main_cat_id`, `sub_cat_id`, `name`, `description`, `price`,  `img`, `qty`)
+			 VALUES  ('$id','$mcat','$scat',' $name','$des','$price','$img','$qty')";
             return $this->db_query($sql);
         }
     
     
     public function get_product(){
+
 		$ndb = new db_connection();
 		$sql="SELECT * FROM `products`";
 		$result=$ndb->db_fetch_all($sql);

@@ -1,8 +1,8 @@
 <?php
 session_start();
-//require_once ("../functions/cat_function.php");
+require_once ("../controllers/cat_controller.php");
 
-require_once("../functions/product_function.php");
+//require_once("../functions/product_function.php");
 require_once('../settings/core.php');
 
 check_login(); 
@@ -167,7 +167,7 @@ $img = $_SESSION['image'] ;
     <div class="container">
         <div class="form-container">
             <h2 class="form-title">Add New Product</h2>
-            <form action="../ations/add_product.php" method="POST" enctype="multipart/form-data">
+            <form action="../actions/addproduct.php" method="POST" enctype="multipart/form-data">
                 <!-- Product Name -->
                 <input type="hidden"  name="seller" value="<?php echo $id?>">
                 <div class="mb-4">
@@ -200,13 +200,13 @@ $img = $_SESSION['image'] ;
                 </div>
 
                 <!-- Subcategory -->
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label for="subCategory" class="form-label">Subcategory</label>
                     <select class="form-select" id="subCategory" name="sub_category" required>
                         <option value="" disabled selected>Select Subcategory</option>
-                        <!-- Add options dynamically based on the selected main category -->
-                    </select>
-                </div>
+                        Add options dynamically based on the selected main category -->
+                    <!-- </select>
+                </div> --> 
 
                 <!-- Product Image -->
                 <div class="mb-4">
