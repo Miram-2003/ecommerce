@@ -1,11 +1,4 @@
 <?php
-//start session
-session_start(); 
-
-//for header redirection
-ob_start();
-
-//funtion to check for login
 
 function check_login(){
     if (!isset($_SESSION["seller_id"]) && !isset($_SESSION["seller_name"])) {
@@ -15,8 +8,6 @@ function check_login(){
 }
 
 
-
-//function to get user ID
 function check_id(){
 
     if (!isset($_SESSION["store_id"])) {

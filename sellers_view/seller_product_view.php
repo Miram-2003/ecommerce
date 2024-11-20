@@ -1,6 +1,6 @@
 <?php
-
-require_once ("../functions/cat_function.php");
+session_start();
+//require_once ("../functions/cat_function.php");
 
 require_once("../functions/product_function.php");
 require_once('../settings/core.php');
@@ -10,8 +10,7 @@ $id =$_SESSION['seller_id'];
 $name = $_SESSION['seller_name'] ;
 $email  = $_SESSION['email'] ;
 $img = $_SESSION['image'] ; 
-echo $id;
-echo $img;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +30,7 @@ echo $img;
             color: white;
             height: 100vh; 
             position: fixed;
-            top: 5%;
+            top: 0%;
             left: 0;
             width: 16%; 
             overflow-y: auto; 
@@ -44,7 +43,7 @@ echo $img;
             color: white;
         }
         .nav {
-            margin-top: 50px;
+            margin-top: 100px;
         }
 
         
@@ -71,7 +70,26 @@ echo $img;
             overflow-y: auto;
             padding: 20px;
         }
+
+      
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
     </style>
+ 
 </head>
 <body>
     <!-- Top Navigation Bar -->
@@ -146,21 +164,64 @@ echo $img;
 
     
     <main>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Manage Products</h1>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="form-title">Add New Product</h2>
+            <form action="../ations/add_product.php" method="POST" enctype="multipart/form-data">
+                <!-- Product Name -->
+                <input type="hidden"  name="seller" value="<?php echo $id?>">
+                <div class="mb-4">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="product_name" placeholder="Enter product name" required>
+                </div>
+
+                <!-- Product Description -->
+                <div class="mb-4">
+                    <label for="productDescription" class="form-label">Product Description</label>
+                    <textarea class="form-control" id="productDescription" name="product_description" rows="4" placeholder="Enter product description" required></textarea>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-4">
+                    <label for="productPrice" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="productPrice" name="product_price" placeholder="Enter product price" step="0.01" required>
+                </div>
+
+                <!-- Stock Quantity -->
+                <div class="mb-4">
+                    <label for="stockQuantity" class="form-label">Stock Quantity</label>
+                    <input type="number" class="form-control" id="stockQuantity" name="stock_quantity" placeholder="Enter stock quantity" required>
+                </div>
+
+                <!-- Main Category -->
+                <div class="mb-4">
+                   <?php echo get_cat_ctr(); ?>
+                    
+                </div>
+
+                <!-- Subcategory -->
+                <div class="mb-4">
+                    <label for="subCategory" class="form-label">Subcategory</label>
+                    <select class="form-select" id="subCategory" name="sub_category" required>
+                        <option value="" disabled selected>Select Subcategory</option>
+                        <!-- Add options dynamically based on the selected main category -->
+                    </select>
+                </div>
+
+                <!-- Product Image -->
+                <div class="mb-4">
+                    <label for="productImage" class="form-label">Product Image</label>
+                    <input type="file" class="form-control" id="productImage" name="product_image" accept="image/*" required>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Add Product</button>
+                </div>
+            </form>
         </div>
-        
-        <form action ="../actions/addproduct.php" method= "post" enctype="multipart/form-data">
-            product category :<?php echo display_cat_option(); ?><br><br>
-            
-            product name: <input name ="title"><br><br>
-            product price: <input name ="price"><br><br>
-            product description: <input name="desc"><br><br>
-            product image: <input type="file" name ="image" accept="image/*"> <br><br>
-            produt keyword: <input name="word">
-    
-            <button> submit </button>
-        <div style="height: 1500px;">Extra content to scroll...</div>
+    </div>
+
     </main>
 
   

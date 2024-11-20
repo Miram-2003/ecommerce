@@ -39,6 +39,7 @@ class cat_class extends db_connection{
 	}
 
 	public function get_a_cat($id){
+		$ndb = new db_connection();
 		$id = (int) mysqli_real_escape_string($ndb->db_conn(),$id);
 		$ndb = new db_connection();
 		$sql= "SELECT * FROM `main_cat` WHERE `cat_id` =$id";
@@ -51,6 +52,7 @@ class cat_class extends db_connection{
 
 
 	public function delete($id){
+		$ndb = new db_connection();
 		$id = (int) mysqli_real_escape_string($ndb->db_conn(),$id);
 		$ndb = new db_connection();
 		$sql = "DELETE FROM `main cat` WHERE cat_id = $id ";
@@ -86,17 +88,17 @@ class cat_class extends db_connection{
 	
 		// Generate HTML for main category dropdown
 		$options = '<label for="main_cat">Main Category:</label>
-					<select name="main_cat" id="main_cat" required>
+					<select class ="form-select" name="main_cat" id="main_cat" required>
 					<option value="" disabled selected>Select a Main Category</option>';
 		foreach ($mainCategories as $mainCat) {
 			$options .= "<option value='" . htmlspecialchars($mainCat['cat_id']) . "'>"
 						. htmlspecialchars($mainCat['cat_name']) . "</option>";
 		}
-		$options .= "</select>";
+		$options .= "</select><br>";
 	
 		// Generate a placeholder for subcategories dropdown
 		$options .= '<label for="sub_cat">Subcategory:</label>
-					<select name="sub_cat" id="sub_cat" required>
+					<select class ="form-select" name="sub_cat" id="sub_cat" required>
 					<option value="" disabled selected>Select a Subcategory</option>
 					</select>';
 	
@@ -125,7 +127,7 @@ class cat_class extends db_connection{
 		</script>';
 	
 		
-		echo $options;
+		return $options;
 	}
 	
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../settings/core.php');
 
 check_login(); 
@@ -6,8 +7,7 @@ $id =$_SESSION['seller_id'];
 $name = $_SESSION['seller_name'] ;
 $email  = $_SESSION['email'] ;
 $img = $_SESSION['image'] ; 
-echo $id;
-echo $img;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@ echo $img;
             color: white;
             height: 100vh; 
             position: fixed;
-            top: 5%;
+            top: 0%;
             left: 0;
             width: 16%; 
             overflow-y: auto; 
@@ -39,8 +39,9 @@ echo $img;
             background-color: #0056b3; 
             color: white;
         }
+        
         .nav {
-            margin-top: 50px;
+            margin-top: 100px;
         }
 
         
