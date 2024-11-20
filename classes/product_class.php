@@ -21,10 +21,10 @@ class product_class extends db_connection{
         }
     
     
-    public function get_product(){
+    public function get_product_by_Seller($id){
 
 		$ndb = new db_connection();
-		$sql="SELECT * FROM `products`";
+		$sql="SELECT * FROM `products` WHERE `store_id` = '$id'";
 		$result=$ndb->db_fetch_all($sql);
 		return $result;
 	}

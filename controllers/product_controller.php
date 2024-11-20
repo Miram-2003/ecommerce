@@ -8,11 +8,10 @@ function add_product_ctr($user_id, $pro_mcat, $pro_scat, $prod_name, $prod_price
 }
 
 
-function get_product_ctr() {
+function get_product_ctr($id) {
    
     $get_product = new product_class();
-    $result = $get_product->get_product();
-
+    $result = $get_product->get_product_by_seller($id);
     return $result;
 }
 
