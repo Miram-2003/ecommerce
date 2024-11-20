@@ -1,5 +1,5 @@
 <?php
-require_once("../settings/db_class.php");
+require_once("../ecommerceproject/settings/db_class.php");
 
 class product_class extends db_connection{
 
@@ -25,6 +25,14 @@ class product_class extends db_connection{
 
 		$ndb = new db_connection();
 		$sql="SELECT * FROM `products` WHERE `store_id` = '$id'";
+		$result=$ndb->db_fetch_all($sql);
+		return $result;
+	}
+
+	public function get_all_product(){
+
+		$ndb = new db_connection();
+		$sql="SELECT * FROM `products`";
 		$result=$ndb->db_fetch_all($sql);
 		return $result;
 	}

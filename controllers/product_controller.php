@@ -1,5 +1,5 @@
 <?php
-require("../classes/product_class.php");
+require_once("../ecommerceproject/classes/product_class.php");
 
 
 function add_product_ctr($user_id, $pro_mcat, $pro_scat, $prod_name, $prod_price, $prod_des, $prod_qty, $prod_img){
@@ -14,6 +14,15 @@ function get_product_ctr($id) {
     $result = $get_product->get_product_by_seller($id);
     return $result;
 }
+
+function get_allproduct() {
+   
+    $get_product = new product_class();
+    $result = $get_product->get_all_product();
+    return $result;
+}
+
+
 
 
 function get_a_product_ctr($id){
