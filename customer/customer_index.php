@@ -1,5 +1,5 @@
 <?php
-require_once("product_controller.php");
+require_once("../controllers/product_controller.php");
 
 // Fetch all products
 $products = get_allproduct();
@@ -110,14 +110,9 @@ $products = get_allproduct();
                         <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../ecommerceproject/login/register.php">Sell with Us</a>
+                        <a class="nav-link" href="../login/logout.php">logout</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../ecommerceproject/login/customer_login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="../ecommerceproject/login/customer_register.php">Register</a>
-                    </li>
+                 
                 </ul>
                 <form class="d-flex ms-3">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -137,11 +132,11 @@ $products = get_allproduct();
                     ?>
                     <div class="col">
                         <div class="card product-card">
-                            <img src="product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                            <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                             <div class="card-body">
                                 <h5 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h5>
                                 <p class="product-price">$<?php echo number_format($product['price'], 2); ?></p>
-                                <a href="../ecommerceproject/login/customer_login.php" class="btn btn-custom btn-sm">View Details</a>
+                                <a href="product_details.php?id=<?php echo $product['product_id']; ?>" class="btn btn-custom btn-sm">View Details</a>
                             </div>
                         </div>
                     </div>

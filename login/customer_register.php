@@ -58,7 +58,7 @@ $old = $_SESSION['old'] ?? [];
                     <h3><i class="fas fa-user-plus"></i> Seller Registration</h3>
                 </div>
                 
-                    <form id="registrationForm" action="../actions/store_register.php" method="POST" enctype="multipart/form-data">
+                    <form id="registrationForm" action="../actions/customer_register.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name"><i class="fas fa-user"></i> Name</label>
                             <input type="text" class="form-control" id="name" name="name" required value="<?= htmlspecialchars($old['name'] ?? '') ?>">
@@ -71,38 +71,25 @@ $old = $_SESSION['old'] ?? [];
                             <div id="emailError" class="error"><?= htmlspecialchars( $errors['emailexist']  ?? '') ?></div>
                             
                         </div>
-                        <div class="form-group">
-                            <label for="store_name"><i class="fas fa-store"></i> Store Name</label>
-                            <input type="text" class="form-control" id="store_name" name="store_name" required value="<?= htmlspecialchars($old['storeName'] ?? '') ?>">
-                            <div id="storeError" class="error"><?= htmlspecialchars($errors['store'] ?? '') ?></div>
-                        </div>
+                       
                         <div class="form-group">
                             <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
                             <input type="text" class="form-control" id="phone" name="phone" required value="<?= htmlspecialchars($old['phone'] ?? '') ?>">
                             <div id="phoneError" class="error"><?= htmlspecialchars($errors['phone'] ?? '') ?></div>
                         </div>
                         <div class="form-group">
-                            <label for="country"><i class="fas fa-globe"></i> Country</label>
-                            <input type="text" class="form-control" id="country" name="country" required value="<?= htmlspecialchars($old['country'] ?? '') ?>">
-                            <div id="countryError" class="error"><?= htmlspecialchars($errors['country'] ?? '') ?></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="region"><i class="fas fa-map-marker-alt"></i> Region</label>
+                            <label for="region"><i class="fas fa-globe"></i>Region</label>
                             <input type="text" class="form-control" id="region" name="region" required value="<?= htmlspecialchars($old['region'] ?? '') ?>">
                             <div id="regionError" class="error"><?= htmlspecialchars($errors['region'] ?? '') ?></div>
                         </div>
+                       
                         <div class="form-group">
                             <label for="zone"><i class="fas fa-map-marker-alt"></i>City/Town</label>
                             <input type="text" class="form-control" id="city" name="city" required value="<?= htmlspecialchars($old['city'] ?? '') ?>">
                             <div id="cityError" class="error"><?= htmlspecialchars($errors['city'] ?? '') ?></div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="logo"><i class="fas fa-store-alt"></i>Store image/logo</label>
-                            <input type="file" class="form-control" id="logo" name="image">
-                            <div id="logoError" class="error"><?= htmlspecialchars($errors['imageName'] ?? '') ?></div>
-                        </div>
-
+                        
                         <div class="form-group">
                             <label for="password"><i class="fas fa-lock"></i> Password</label>
                             <input type="password" class="form-control" id="password" name="password" required value="<?= htmlspecialchars($old['password'] ?? '') ?>">
@@ -117,7 +104,7 @@ $old = $_SESSION['old'] ?? [];
                     </form>
                
                 <div class="card-footer text-center">
-                    <a href="login.php">Already have an account? Login here</a>
+                    <a href="../login/customer_login.php">Already have an account? Login here</a>
                 </div>
             </div>
         </div>

@@ -85,7 +85,7 @@ $error = $_SESSION['error'] ?? "";
                     <?php unset($_SESSION['error']); ?>
                 <?php endif; ?>
             </div>
-            <form action="../actions/store_login.php" method="POST" enctype="multipart/form-data">
+            <form action="../actions/customer_login.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="email"><i class="fas fa-envelope"></i> Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -98,7 +98,7 @@ $error = $_SESSION['error'] ?? "";
             </form>
 
             <div class="text-center mt-3">
-                <a href="register.php">Don't have an account? Register here</a>
+                <a href="../login/customer_register.php">Don't have an account? Register here</a>
             </div>
         </div>
     </div>
