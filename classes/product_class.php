@@ -15,9 +15,9 @@ class product_class extends db_connection{
 			$qty = mysqli_real_escape_string($ndb->db_conn(), $prod_qty);
 			$img= mysqli_real_escape_string($ndb->db_conn(), $prod_img);
     
-            $sql = "INSERT INTO `products`( `store_id`, `main_cat_id`, `sub_cat_id`, `name`, `description`, `price`,  `img`, `qty`)
+            $sqlQuery = "INSERT INTO `products`( `store_id`, `main_cat_id`, `sub_cat_id`, `name`, `description`, `price`,  `img`, `qty`)
 			 VALUES  ('$id','$mcat','$scat',' $name','$des','$price','$img','$qty')";
-            return $this->db_query($sql);
+            return $this->db_query($sqlQuery);
         }
     
     

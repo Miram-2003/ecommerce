@@ -2,15 +2,16 @@
 session_start();
 require_once('../settings/core.php');
 
-check_login(); 
-$id =$_SESSION['seller_id'];
-$name = $_SESSION['seller_name'] ;
-$email  = $_SESSION['email'] ;
-$img = $_SESSION['image'] ; 
+check_login();
+$id = $_SESSION['seller_id'];
+$name = $_SESSION['seller_name'];
+$email  = $_SESSION['email'];
+$img = $_SESSION['image'];
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,54 +23,60 @@ $img = $_SESSION['image'] ;
             height: 100vh;
             overflow: hidden;
         }
+
         .sidebar {
-            background-color: #004080; 
+            background-color: #004080;
             color: white;
-            height: 100vh; 
+            height: 100vh;
             position: fixed;
             top: 0%;
             left: 0;
-            width: 16%; 
-            overflow-y: auto; 
+            width: 16%;
+            overflow-y: auto;
         }
+
         .sidebar .nav-link {
             color: white;
         }
+
         .sidebar .nav-link.active {
-            background-color: #0056b3; 
+            background-color: #0056b3;
             color: white;
         }
-        
+
         .nav {
             margin-top: 100px;
         }
 
-        
+
         .navbar {
-            background-color: #004080; 
+            background-color: #004080;
             color: white;
             position: fixed;
             top: 0;
             left: 0%;
-            width: 100%; 
-            z-index: 1030; 
+            width: 100%;
+            z-index: 1030;
         }
-        
+
         .navbar .nav-link {
             color: white;
         }
+
         .navbar .nav-link:hover {
             color: #f8f9fa;
         }
+
         main {
-            margin-left: 16%; 
+            margin-left: 16%;
             margin-top: 56px;
-            height: calc(100vh - 56px); 
+            height: calc(100vh - 56px);
             overflow-y: auto;
             padding: 20px;
         }
     </style>
 </head>
+
 <body>
     <!-- Top Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -83,8 +90,8 @@ $img = $_SESSION['image'] ;
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
                     </li>
-                    
-        
+
+
 
                     <div class="dropdown">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -92,14 +99,16 @@ $img = $_SESSION['image'] ;
                             <strong><?php echo $name; ?></strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    
+
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="../login/logout.php">Sign out</a></li>
                         </ul>
-                        </div>
-                 </ul>
+                    </div>
+                </ul>
             </div>
         </div>
     </nav>
@@ -112,11 +121,20 @@ $img = $_SESSION['image'] ;
                     <i class="fas fa-home"></i> Dashboard
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../sellers_view/seller_product_view.php">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-box"></i> Products
                 </a>
+                <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                    <li>
+                        <a class="dropdown-item" href="../sellers_view/add_product_view.php">Add Product</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="../sellers_view/seller_product_view.php">Manage Products</a>
+                    </li>
+                </ul>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="../sellers_view/seller_order.php">
                     <i class="fas fa-shopping-cart"></i> Orders
@@ -137,11 +155,11 @@ $img = $_SESSION['image'] ;
                     <i class="fas fa-bullhorn"></i> Marketing
                 </a>
             </li>
-            
+
         </ul>
     </nav>
 
-    
+
     <main>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
@@ -151,7 +169,8 @@ $img = $_SESSION['image'] ;
         <div style="height: 1500px;">Extra content to scroll...</div>
     </main>
 
-  
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -138,11 +138,24 @@ class cat_class extends db_connection{
 
 
 	//--DELETE--//
+
+	public function getMainName($id) {
+		$conn = new db_connection();
+		$sql = "SELECT `cat_name` FROM `main_cat` WHERE  `cat_id` = $id";
+		$result = $conn->db_fetch_one($sql);
+		return $result["cat_name"];
+	}
+
+
+	public function getSubName($id) {
+		$conn = new db_connection();
+		$sql = "SELECT `sub_name`  FROM `sub_cat` WHERE  `sub_id` = $id";
+		$result = $conn->db_fetch_one($sql);
+		return $result["sub_name"];
+	}
 	
 
 }
 
-$class = new cat_class();
-$class->getCategoryOptions();
 
 ?>

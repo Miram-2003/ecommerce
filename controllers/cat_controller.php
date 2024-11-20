@@ -34,6 +34,21 @@ function delete_cat($id){
     return $result;
 
 }
+
+
+function getMainCat($id){
+    $cat = new cat_class();
+    $result = $cat->getMainName($id);
+    return $result;
+}
+
+function getSubCat($id){
+
+    $cat = new cat_class();
+    $result = $cat->getSubName($id);
+    return $result;
+}
+
 //--INSERT--//
 
 //--SELECT--//
@@ -42,6 +57,6 @@ function delete_cat($id){
 
 //--DELETE--//
 
-;
+
 
 ?>
