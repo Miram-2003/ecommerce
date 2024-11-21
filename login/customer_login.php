@@ -15,7 +15,7 @@ $error = $_SESSION['error'] ?? "";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller Login</title>
+    <title> Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
@@ -76,7 +76,7 @@ $error = $_SESSION['error'] ?? "";
     <div class="form-container">
         <div class="form-box">
             <div class="text-center mb-4">
-                <h3 class="text-primary"><i class="fas fa-user-plus"></i> Seller Login</h3>
+                <h3 class="text-primary"><i class="fas fa-user-plus"></i>  Login</h3>
             </div>
 
             <div> <?php if (isset($_SESSION['error'])): ?>

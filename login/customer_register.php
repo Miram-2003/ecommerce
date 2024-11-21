@@ -14,7 +14,7 @@ $old = $_SESSION['old'] ?? [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller Registration</title>
+    <title>Registration</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
@@ -55,7 +55,7 @@ $old = $_SESSION['old'] ?? [];
         <div class="container">
             <div class="">
                 <div class=" text-center text-primary">
-                    <h3><i class="fas fa-user-plus"></i> Seller Registration</h3>
+                    <h3><i class="fas fa-user-plus"></i>  Registration</h3>
                 </div>
                 
                     <form id="registrationForm" action="../actions/customer_register.php" method="POST" enctype="multipart/form-data">
