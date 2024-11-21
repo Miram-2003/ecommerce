@@ -1,5 +1,13 @@
 <?php
+session_start();
 require_once("../controllers/product_controller.php");
+
+require_once('../settings/core.php');
+
+check_user_login();
+$id = $_SESSION['user_id'];
+$name = $_SESSION['user_name'];
+$email  = $_SESSION['email'];
 
 // Fetch all products
 $products = get_allproduct();
@@ -98,29 +106,56 @@ $products = get_allproduct();
 
 <body>
     <!-- Fixed Top Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Shopify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../login/logout.php">logout</a>
-                    </li>
-                 
-                </ul>
-                <form class="d-flex ms-3">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
+    <div class="container-fluid">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">POSify</a>
+
+        <!-- Toggler for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Left-aligned links -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-info-circle"></i> About</a>
+                </li>
+            </ul>
+
+            <!-- Right-aligned links -->
+            <ul class="navbar-nav ms-auto align-items-center">
+                <!-- Search Bar -->
+                <li class="nav-item me-3">
+                    <form class="d-flex">
+                        <input class="form-control lg me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+                </li>
+                <!-- Cart -->
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
+                </li>
+                <!-- User Dropdown -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong><?php echo $name; ?></strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="../login/logout_customer.php">Orders</a></li>
+                        <li><a class="dropdown-item" href="../login/logout_customer.php">Sign out</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <!-- Main Content -->
     <div class="container mt-5 pt-4">

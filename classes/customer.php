@@ -54,19 +54,19 @@ class customer_class extends db_connection
             return ['success' => false, 'error' => 'Email not registered'];
         }
     
-        $seller = $result->fetch_assoc();
+        $user = $result->fetch_assoc();
     
         // Check if the password matches
-        if (!password_verify($password, $seller['password_hash'])) {
+        if (!password_verify($password, $user['password_hash'])) {
             // Incorrect password
             return ['success' => false, 'error' => 'Incorrect password or emai address'];
         }
     
         // Email and password are correct
-        return ['success' => true, 'seller' => $seller];
+        return ['success' => true, 'user' => $user];
     }
 
-    public function getAllSellers()
+    public function getAllusers()
     {
         $ndb = new db_connection();
         $this->db = $ndb->db_connect();
@@ -74,12 +74,12 @@ class customer_class extends db_connection
         $sql = "SELECT * FROM stores";
 
         $result = $this->db->query($sql);
-        $sellers = [];
+        $users = [];
         while ($row = $result->fetch_assoc()) {
-            $sellers[] = $row;
+            $users[] = $row;
         }
 
-        return $sellers;
+        return $users;
     }
 }
 

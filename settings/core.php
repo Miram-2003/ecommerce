@@ -19,7 +19,7 @@ function check_id(){
 
 function check_user_login(){
 
-    if (!isset($_SESSION["seller_id"]) && !isset($_SESSION["seller_name"])) {
+    if (!isset($_SESSION['user_id']) && !isset( $_SESSION['user_name'])) {
         header("Location:../login/customer_login.php");
         die();
     }

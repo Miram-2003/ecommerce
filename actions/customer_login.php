@@ -10,11 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //$error['emailexist'] = $_SESSION['exist'];
    $email = htmlspecialchars(trim($_POST['email']));
    $password = htmlspecialchars(trim($_POST['password']));
+
+
    
-   loginSeller($email, $password);
+   loginUser($email, $password);
 
 
 
         
 }
-?>
+?>M.I.R.2003,iam

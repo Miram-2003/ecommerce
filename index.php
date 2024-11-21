@@ -113,7 +113,7 @@ $products = get_allproduct();
                         <a class="nav-link" href="../ecommerceproject/login/register.php">Sell with Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../ecommerceproject/login/customer_login.php">Login</a>
+                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="../ecommerceproject/login/customer_login.php">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-light btn-sm ms-2" href="../ecommerceproject/login/customer_register.php">Register</a>

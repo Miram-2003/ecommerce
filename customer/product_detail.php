@@ -6,10 +6,9 @@ session_start();
 require_once('../settings/core.php');
 
 check_user_login();
-$id = $_SESSION['seller_id'];
-$name = $_SESSION['seller_name'];
+$id = $_SESSION['user_id'];
+$name = $_SESSION['user_name'];
 $email  = $_SESSION['email'];
-$img = $_SESSION['image'];
 
 
 // Get the product ID from the query string
@@ -95,57 +94,81 @@ $cat_sub = getSubCat($product['sub_cat_id']);?>
 </head>
 
 <body>
-    <!-- Top Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Shopify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sell with Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="#">Register</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
+    <div class="container-fluid">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">POSify</a>
 
+        <!-- Toggler for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Left-aligned links -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-info-circle"></i> About</a>
+                </li>
+            </ul>
+
+            <!-- Right-aligned links -->
+            <ul class="navbar-nav ms-auto align-items-center">
+                <!-- Search Bar -->
+                <li class="nav-item me-3">
+                    <form class="d-flex">
+                        <input class="form-control lg me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+                </li>
+                <!-- Cart -->
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
+                </li>
+                <!-- User Dropdown -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong><?php echo $name; ?></strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="../login/logout_customer.php">Orders</a></li>
+                        <li><a class="dropdown-item" href="../login/logout_customer.php">Sign out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
     <!-- Main Content -->
     <div class="container mt-5 pt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid">
-            </div>
-            <div class="col-md-6">
-                <div class="product-detail">
-                    <h2><?php echo htmlspecialchars($product['name']); ?></h2>
-                    <p class="product-price">GHC<?php echo number_format($product['price'], 2); ?></p>
-                    <p><?php echo htmlspecialchars($product['description']); ?></p>
-                    <p><strong>Category:</strong> <?php echo htmlspecialchars($cat_man); ?></p>
-                    <p><strong>Subcategory:</strong> <?php echo htmlspecialchars($cat_sub); ?></p>
-                    <form action="add_to_cart.php" method="POST">
-                        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required>
-                        </div>
-                        <button type="submit" class="btn btn-custom btn-lg w-100">Add to Cart</button>
-                    </form>
-                </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <div class="product-detail">
+                <h2><?php echo htmlspecialchars($product['name']); ?></h2>
+                <p class="product-price">GHC<?php echo number_format($product['price'], 2); ?></p>
+                <p><?php echo htmlspecialchars($product['description']); ?></p>
+                <p><strong>Category:</strong> <?php echo htmlspecialchars($cat_man); ?></p>
+                <p><strong>Subcategory:</strong> <?php echo htmlspecialchars($cat_sub); ?></p>
+                <form action="../actions/addcart.php" method="POST">
+                    <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+                    <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-custom btn-lg w-100">Add to Cart</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Footer -->
     <footer>
