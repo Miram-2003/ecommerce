@@ -45,10 +45,10 @@ require_once("../classes/customer.php");
             // Login successful, start a session and store seller info
         
             $seller = $loginResult['seller'];
-            $_SESSION['seller_id'] = $seller['store_id'];
-            $_SESSION['seller_name'] = $seller['store_name'];
+            $_SESSION['user_id'] = $seller['user_id'];
+            $_SESSION['user_name'] = $seller['fullName'];
             $_SESSION['email'] = $seller['email'];
-            $_SESSION['image'] = $seller['img'];
+         
            
             header("Location: ../customer/customer_index.php");
             exit();

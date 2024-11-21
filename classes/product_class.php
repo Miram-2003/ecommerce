@@ -40,7 +40,7 @@ class product_class extends db_connection{
 	public function get_a_product($id){
 		$id = (int)$id;
 		$ndb = new db_connection();
-		$sql= "SELECT * FROM `products` WHERE 1 `product_id` =$id";
+		$sql= "SELECT * FROM `products` WHERE  `product_id` =$id";
 		$result = $ndb->db_fetch_one($sql);
 		return $result;
 

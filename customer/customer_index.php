@@ -136,7 +136,7 @@ $products = get_allproduct();
                             <div class="card-body">
                                 <h5 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h5>
                                 <p class="product-price">$<?php echo number_format($product['price'], 2); ?></p>
-                                <a href="product_details.php?id=<?php echo $product['product_id']; ?>" class="btn btn-custom btn-sm">View Details</a>
+                                <a href="product_detail.php?id=<?php echo $product['product_id']; ?>" class="btn btn-custom btn-sm">View Details</a>
                             </div>
                         </div>
                     </div>
