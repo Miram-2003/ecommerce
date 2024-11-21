@@ -67,4 +67,8 @@ require_once("../classes/store_class.php");
         return $store->getAllSellers();
     }
 
+    function get_aseller_byproduct($product_id) {
+        $store = new store_class();
+        return $store->getSellerid_by_product($product_id);
+    }
 ?>

@@ -74,13 +74,18 @@ class store_class extends db_connection
 
         $sql = "SELECT * FROM stores";
 
-        $result = $this->db->query($sql);
-        $sellers = [];
-        while ($row = $result->fetch_assoc()) {
-            $sellers[] = $row;
-        }
+        $result = $this->db_fetch_all($sql);
+        // $sellers = [];
+        // while ($row = $result->fetch_assoc()) {
+        //     $sellers[] = $row;
+        // }
 
-        return $sellers;
+        return $result;
+    }
+
+    public function getSellerid_by_product($product_id){
+        $sql = "SELECT  `store_id` FROM `products` WHERE `product_id` = $product_id";
+        return $this->db_fetch_one($sql);
     }
 }
 

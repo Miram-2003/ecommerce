@@ -14,11 +14,7 @@ class db_connection
 	//properties
 	public $db = null;
 	public $results = null;
-	//connect
-	/**
-	 *Database connection
-	 *@return bolean
-	 **/
+	
 	function db_connect()
 	{
 
@@ -48,12 +44,7 @@ class db_connection
 	}
 
 
-	//execute a query
-	/**
-	 *Query the Database
-	 *@param takes a connection and sql query
-	 *@return bolean
-	 **/
+	
 	function db_query($sqlQuery)
 	{
 
@@ -73,13 +64,7 @@ class db_connection
 		}
 	}
 
-	//execute a query with mysqli real escape string
-	//to saveguard from sql injection
-	/**
-	 *Query the Database
-	 *@param takes a connection and sql query
-	 *@return bolean
-	 **/
+	
 	function db_query_escape_string($sqlQuery)
 	{
 
@@ -93,11 +78,7 @@ class db_connection
 		}
 	}
 
-	//fetch a data
-	/**
-	 *get select data
-	 *@return a record
-	 **/
+	
 	function db_fetch_one($sql)
 	{
 
@@ -112,7 +93,7 @@ class db_connection
 	//fetch all data
 	/**
 	 *get select data
-	 *@return all record
+	 * all record
 	 **/
 	function db_fetch_all($sql)
 	{
@@ -126,11 +107,7 @@ class db_connection
 	}
 
 
-	//count data
-	/**
-	 *get select data
-	 *@return a count
-	 **/
+	
 	function db_count()
 	{
 

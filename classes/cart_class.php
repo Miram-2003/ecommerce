@@ -5,7 +5,7 @@ class cart_class extends db_connection {
 
     public function get_cart_item($user_id, $product_id) {
         $sql = "SELECT * FROM `cart` WHERE `user_id` = '$user_id' AND   `product_id` = '$product_id'";
-        return $this->db_fetch_one($sql, [$user_id, $product_id]);
+        return $this->db_fetch_one($sql);
     }
 
     public function update_cart_item($user_id, $product_id, $quantity) {
@@ -33,10 +33,32 @@ class cart_class extends db_connection {
         // Execute the query and fetch the results
         return $this->db_fetch_all($sql);
     }
+
+  function update_cart_item_in_db($user_id, $product_id, $quantity) {
+        $sql = "UPDATE `cart` SET `quantity`='$quantity'  WHERE `user_id` = '$user_id' AND `product_id` = '$product_id'";
+    
+        return $this->db_query($sql);
+    }
+
+    function remove_cart_item($user_id, $product_id) {
+        $sql = "DELETE FROM `cart` WHERE `user_id` = '$user_id' AND `product_id` = '$product_id'";
+        return $this->db_query($sql);
+    }
+
+
+    function clear_cart($user_id) {
+        $sql = "DELETE FROM cart WHERE user_id = $user_id";
+        return $this->db_query($sql);
+    }
+    
+    
+    
     
     
 
 }
+
+
 
 
 ?>

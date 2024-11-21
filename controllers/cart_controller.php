@@ -26,3 +26,27 @@ function get_cart_items($user_id) {
     return $cart->fetch_cart_items($user_id);
 }
 
+function update_cart_item($user_id, $product_id, $quantity) {
+    $cart = new cart_class();
+    if ($quantity <= 0) {
+        $cart->remove_cart_item($user_id, $product_id);
+        return true;
+    }
+
+    return $cart->update_cart_item_in_db($user_id, $product_id, $quantity);
+}
+
+function delete_cart_item($user_id, $product_id) {
+    $cart = new cart_class();
+   return $cart->remove_cart_item($user_id, $product_id);
+
+
+
+
+}
+
+function clear_cart($user_id){
+    $cart = new cart_class();
+    return $cart->clear_cart($user_id);
+}
+
