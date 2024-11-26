@@ -43,10 +43,10 @@ $total_price = array_reduce($cart_items, function ($total, $item) {
     </table>
     <h4>Total: GHC<?php echo number_format($total_price, 2); ?></h4>
 
-    <h4>Shipping Information</h4>
+    <h4>Delivery Information</h4>
     <form action="../actions/place_order.php" method="POST">
         <div class="mb-3">
-            <label for="shipping_address" class="form-label">Shipping Address</label>
+            <label for="shipping_address" class="form-label">Delivery Address</label>
             <textarea class="form-control" id="shipping_address" name="shipping_address" rows="3" required></textarea>
         </div>
         <div class="mb-3">
