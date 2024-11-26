@@ -255,11 +255,11 @@ $cart_items = get_cart_items($user_id); // Replace with your function to fetch c
                                                                     return $total + ($item['price'] * $item['quantity']);
                                                                 }, 0), 2); ?></span></p>
                         <p class="text-muted">Delivery fees not included yet.</p>
-                        <form action="../actions/check_out.php" method="POST">
-                        <button class="checkout-btn">Checkout (GHC<?php echo number_format(array_reduce($cart_items, function ($total, $item) {
+                       
+                        <a href="../customer/confirm_order.php" class="btn btn-info">Checkout (GHC<?php echo number_format(array_reduce($cart_items, function ($total, $item) {
                                                                         return $total + ($item['price'] * $item['quantity']);
-                                                                    }, 0), 2); ?>)</button>
-                        </form>
+                                                                    }, 0), 2); ?>)</a>
+                       
                     </div>
                 </div>
             <?php } ?>
