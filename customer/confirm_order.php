@@ -61,3 +61,4 @@ $total_price = array_reduce($cart_items, function ($total, $item) {
 </div>
 </body>
 </html>
+ b        
