@@ -1,22 +1,38 @@
 <?php
 require_once("../settings/db_class.php");
+require_once("../controllers/cart_controller.php");
+
 class order_class extends db_connection{
   
-    function create_order_in_db($user_id,  $total_price) {
-        $sql = "INSERT INTO orders (customer_id, total_amount) VALUES ($user_id,  $total_price)";
-      if( $this->db_query($sql)){
-        return $this->db->insert_id;
-      }else{
-        return false;
-      };
-    }
+  function place_order($invoice, $user_id, $total_price, $payment_method, $delivery_address ) {
+    // Connect to the database
+    $conn =$this->db_conn();
+
+    // Create the order
+    $query = "INSERT INTO orders (`invoice_no`, `customer_id`,  `total_amount`, `payment_method`,  `delivery_address`)
+              VALUES (?, ?, ?, ?,?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("iidss", $invoice, $user_id, $total_price, $payment_method, $delivery_address);
+    $stmt->execute();
     
-    function add_order_item_in_db($order_id, $product_id, $quantity, $price) {
-        $sql = "INSERT INTO order_items (order_id, product_id, quantity, price_at_purchase) VALUES (1, $product_id, $quantity, $price)";
-        return $this->db_query($sql);
+    // Get the last inserted order ID
+    $order_id = $stmt->insert_id;
+
+    $cart_items = get_cart_items($user_id);
+    foreach ($cart_items as $item) {
+        $product_id = $item['product_id'];
+        $quantity = $item['quantity'];
+        $price = $item['price'];
+        
+        $item_query = "INSERT INTO order_items (order_id, product_id, quantity, price)
+                       VALUES (?, ?, ?, ?)";
+        $item_stmt = $conn->prepare($item_query);
+        $item_stmt->bind_param("iiid", $order_id, $product_id, $quantity, $price);
+        $item_stmt->execute();
     }
-    
+
+    // Clear the cart after order is placed
+    clear_cart($user_id);
 }
-
-
+}
 ?>

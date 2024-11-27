@@ -48,6 +48,7 @@ require_once("../classes/customer.php");
             $_SESSION['user_id'] = $User['user_id'];
             $_SESSION['user_name'] = $User['fullName'];
             $_SESSION['email'] = $User['email'];
+            $_SESSION['contact'] = $User['contact'];
          
            
              header("Location: ../customer/customer_index.php");

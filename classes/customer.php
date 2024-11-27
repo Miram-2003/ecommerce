@@ -69,7 +69,7 @@ class customer_class extends db_connection
     public function getAllusers()
     {
         $ndb = new db_connection();
-        $this->db = $ndb->db_connect();
+        $this->db = $ndb->db_conn();
 
         $sql = "SELECT * FROM stores";
 
