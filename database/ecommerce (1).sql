@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2024 at 12:56 AM
+-- Generation Time: Nov 30, 2024 at 12:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `ecommerce`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(20, 3, 11, 6, 5000.00, '2024-11-29 18:29:21', '2024-11-29 23:22:30'),
+(21, 3, 10, 2, 400.00, '2024-11-29 18:29:28', '2024-11-29 23:24:38');
 
 -- --------------------------------------------------------
 
@@ -80,13 +104,30 @@ INSERT INTO `main_cat` (`cat_id`, `cat_name`) VALUES
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
+  `invoice_no` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
-  `store_id` int(11) NOT NULL,
   `status` enum('pending','paid','shipped','cancelled') DEFAULT 'pending',
   `total_amount` decimal(10,2) NOT NULL,
-  `payment_method` enum('credit_card','cash','POS') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `payment_method` enum('cash on delivery','card payment') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `delivery_address` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `invoice_no`, `customer_id`, `status`, `total_amount`, `payment_method`, `created_at`, `delivery_address`) VALUES
+(27, 10101, 3, 'paid', 470.00, '', '2024-11-29 14:01:47', 'n'),
+(28, 10101, 3, 'paid', 470.00, '', '2024-11-29 14:02:43', 'h'),
+(29, 10101, 3, 'paid', 470.00, '', '2024-11-29 14:03:47', 'h'),
+(30, 10101, 3, 'paid', 470.00, '', '2024-11-29 14:11:07', 'h'),
+(31, 10101, 3, 'paid', 470.00, '', '2024-11-29 14:12:21', 'h'),
+(32, 10101, 3, 'paid', 470.00, '', '2024-11-29 14:14:04', 'h'),
+(33, 10101, 3, 'paid', 870.00, '', '2024-11-29 16:43:05', 'nkj'),
+(34, 10101, 3, 'paid', 870.00, '', '2024-11-29 17:15:37', 'nkj'),
+(35, 38593, 3, 'pending', 470.00, '', '2024-11-29 17:17:17', 's'),
+(36, 70260, 3, 'pending', 470.00, '', '2024-11-29 17:18:46', 's');
 
 -- --------------------------------------------------------
 
@@ -99,22 +140,25 @@ CREATE TABLE `order_items` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `price_at_purchase` decimal(10,2) NOT NULL
+  `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
+-- Table structure for table `payment`
 --
 
-CREATE TABLE `payments` (
-  `payment_id` int(11) NOT NULL,
+CREATE TABLE `payment` (
+  `pay_id` int(11) NOT NULL,
+  `amt` double NOT NULL,
+  `customer_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `payment_status` enum('pending','completed','failed') DEFAULT 'pending',
-  `payment_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `amount` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `currency` text NOT NULL,
+  `payment_date` date NOT NULL,
+  `mode` varchar(20) NOT NULL,
+  `reference` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -304,11 +348,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fullName`, `email`, `contact`, `region`, `city`, `password_hash`, `updated_at`, `created_at`) VALUES
-(3, 'jared', 'jared@gmail.com', 577087383, 'Eastern', 'Accra', '$2y$10$WLBaRXBKyvzSLybayXjkhOUwBsobaQ8FqsKIs4Ijiser8wEuE.dz6', '2024-11-20 23:17:03', '2024-11-20 23:17:03');
+(3, 'jared', 'jarednortey@gmail.com', 577087383, 'Eastern', 'Accra', '$2y$10$WLBaRXBKyvzSLybayXjkhOUwBsobaQ8FqsKIs4Ijiser8wEuE.dz6', '2024-11-29 12:58:06', '2024-11-20 23:17:03');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `inventory`
@@ -329,8 +381,7 @@ ALTER TABLE `main_cat`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `store_id` (`store_id`);
+  ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Indexes for table `order_items`
@@ -341,10 +392,10 @@ ALTER TABLE `order_items`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `payments`
+-- Indexes for table `payment`
 --
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`payment_id`),
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`pay_id`),
   ADD KEY `order_id` (`order_id`);
 
 --
@@ -380,6 +431,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
@@ -395,19 +452,19 @@ ALTER TABLE `main_cat`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `payments`
+-- AUTO_INCREMENT for table `payment`
 --
-ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `payment`
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -438,6 +495,13 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `inventory`
 --
 ALTER TABLE `inventory`
@@ -448,8 +512,7 @@ ALTER TABLE `inventory`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `order_items`
@@ -457,12 +520,6 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `payments`
---
-ALTER TABLE `payments`
-  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
