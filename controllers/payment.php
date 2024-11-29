@@ -12,7 +12,6 @@ $amount = $amount *100;
     'callback_url' => "../customer.car_view.php",
     'metadata' => ["cancel_action" => "/customer/cart_view.php"]
   ];
-
   $fields_string = http_build_query($fields);
 
   //open connection
@@ -34,15 +33,8 @@ $amount = $amount *100;
   $result = curl_exec($ch);
   echo $result;
 
-  if(curl_errno($ch)) {
-    // Handle cURL errors (e.g., network issues, API unreachable)
-    echo "cURL Error: " . curl_error($ch);
-    curl_close($ch);
-    return null;
 }
 
-// Close cURL session
-curl_close($ch);
 
 // Decode the JSON response
 $response_data = json_decode(  $result , true);
