@@ -1,0 +1,29 @@
+
+.product-detail {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.product-detail img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-price {
+    color: #28a745;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.btn-custom {
+    background-color: #0056b3;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #004080;
+    color: white;
+}

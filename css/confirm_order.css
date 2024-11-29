@@ -1,0 +1,124 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #2c3e50;
+    --background-color: #f4f6f7;
+}
+
+/* body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    /* //line-height: 1.6; */
+
+
+.order-confirmation-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin-top: 50px;
+    max-width: 800px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--background-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.order-header h2 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin: 0;
+}
+
+.order-header .order-number {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.table-order {
+    margin-bottom: 30px;
+}
+
+.table-order th {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.table-order td {
+    vertical-align: middle;
+    border-color: var(--background-color);
+}
+
+.order-total {
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.info-section {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.info-section h5 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* .form-control, */
+.form-select {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+/* .form-control:focus, */
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.icon-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .order-confirmation-container {
+        padding: 20px;
+        margin-top: 20px;
+    }
+}

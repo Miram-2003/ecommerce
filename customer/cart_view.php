@@ -2,6 +2,8 @@
 session_start();
 require_once('../settings/core.php');
 require_once("../controllers/cart_controller.php");
+require_once("../controllers/product_controller.php");
+
 
 check_user_login();
 $id = $_SESSION['user_id'];
@@ -18,7 +20,7 @@ $user_id = intval($_SESSION['user_id']);
 // Fetch all items in the user's cart
 $cart_items = get_cart_items($user_id); // Replace with your function to fetch cart items
 
-
+$products = get_allproduct();
 
 
 ?>
@@ -90,7 +92,7 @@ $cart_items = get_cart_items($user_id); // Replace with your function to fetch c
             width: 100%;
         }
 
-        main{
+        main {
             margin-top: 10%;
         }
 
@@ -110,6 +112,12 @@ $cart_items = get_cart_items($user_id); // Replace with your function to fetch c
         .navbar .nav-link:hover {
             color: #cce5ff;
         }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
 
         .product-detail {
             background: white;
@@ -146,6 +154,43 @@ $cart_items = get_cart_items($user_id); // Replace with your function to fetch c
             color: white;
             padding: 20px 0;
             text-align: center;
+        }
+
+
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card .card-body {
+            padding: 10px;
+        }
+
+        .product-card .product-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #004080;
+        }
+
+        .product-card .product-price {
+            color: #28a745;
+            font-size: 1rem;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -227,9 +272,9 @@ $cart_items = get_cart_items($user_id); // Replace with your function to fetch c
                                     <form action="../actions/update_cart.php" method="POST" class="d-inline">
                                         <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
                                         <input type="hidden" name="quantity" value="<?php echo $item['quantity']; ?>">
-                                        <button type="submit" name="action"  value="decrease"  class="btn btn-quantity">-</button>
+                                        <button type="submit" name="action" value="decrease" class="btn btn-quantity">-</button>
                                         <span class="mx-2"><?php echo $item['quantity']; ?></span>
-                                        <button type="submit" name="action"  value="increase" class="btn btn-quantity">+</button>
+                                        <button type="submit" name="action" value="increase" class="btn btn-quantity">+</button>
                                     </form>
                                 </div>
                                 <form action="../actions/delete_cart.php" method="POST" class="ms-3">
@@ -239,32 +284,60 @@ $cart_items = get_cart_items($user_id); // Replace with your function to fetch c
                             </div>
                         <?php } ?>
                     <?php } else { ?>
-                        <p>Your cart is empty.</p> 
-                        <a href="../customer/customer_index.php" ><button>  Continue Shopping </button>  </a>
+                        <p>Your cart is empty.</p>
+                        <a href="../customer/customer_index.php"> Continue Shopping </a>
                     <?php } ?>
                 </div>
 
                 <!-- Cart Summary -->
-                 <!-- Cart Summary -->
-            <?php if (!empty($cart_items)) { ?>
-                <div class="col-md-4">
-                    <div class="cart-summary">
-                        <h5>Cart Summary</h5>
-                        <hr>
-                        <p>Subtotal: <span class="fw-bold">GHC<?php echo number_format(array_reduce($cart_items, function ($total, $item) {
-                                                                    return $total + ($item['price'] * $item['quantity']);
-                                                                }, 0), 2); ?></span></p>
-                        <p class="text-muted">Delivery fees not included yet.</p>
-                       
-                        <a href="../customer/confirm_order.php" class="btn btn-info">Checkout (GHC<?php echo number_format(array_reduce($cart_items, function ($total, $item) {
+                <?php if (!empty($cart_items)) { ?>
+                    <div class="col-md-4">
+                        <div class="cart-summary">
+                            <h5>Cart Summary</h5>
+                            <hr>
+                            <p>Subtotal: <span class="fw-bold">GHC<?php echo number_format(array_reduce($cart_items, function ($total, $item) {
                                                                         return $total + ($item['price'] * $item['quantity']);
-                                                                    }, 0), 2); ?>)</a>
-                       
+                                                                    }, 0), 2); ?></span></p>
+                            <p class="text-muted">Delivery fees not included yet.</p>
+
+                            <a href="../customer/confirm_order.php" class="btn btn-info">Checkout (GHC<?php echo number_format(array_reduce($cart_items, function ($total, $item) {
+                                                                                                            return $total + ($item['price'] * $item['quantity']);
+                                                                                                        }, 0), 2); ?>)</a>
+
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
+            <hr>
+
+            <br><br><br>
+            <div>
+                <h2 class="text-center my-4"><a href="../customer/customer_index.php">Browse more products</a></h2>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <?php
+                if (!empty($products)) {
+                    foreach ($products as $product) {
+                ?>
+                        <div class="col">
+                            <div class="card product-card">
+                                <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                <div class="card-body">
+                                    <h5 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h5>
+                                    <p class="product-price">$<?php echo number_format($product['price'], 2); ?></p>
+                                    <a href="product_detail.php?id=<?php echo $product['product_id']; ?>" class="btn btn-custom btn-sm">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                <?php
+                    }
+                } else {
+                    echo "<p class='text-muted text-center'>No products available at the moment.</p>";
+                }
+                ?>
+            </div>
+
         </div>
-    </div>
     </main>
     <footer>
         <p>&copy; 2024 Shopify. All rights reserved.</p>

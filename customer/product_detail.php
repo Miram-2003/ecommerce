@@ -35,62 +35,8 @@ $cat_sub = getSubCat($product['sub_cat_id']);?>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .navbar {
-            background-color: #004080;
-            color: white;
-        }
-
-        .navbar .nav-link {
-            color: white;
-        }
-
-        .navbar .nav-link:hover {
-            color: #cce5ff;
-        }
-
-        .product-detail {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .product-detail img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .product-price {
-            color: #28a745;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .btn-custom {
-            background-color: #0056b3;
-            color: white;
-        }
-
-        .btn-custom:hover {
-            background-color: #004080;
-            color: white;
-        }
-
-        footer {
-            margin-top: 60%;
-            background-color: #004080;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/navbr.css">
+    <link rel="stylesheet" href="../css/product_detail.css">
 </head>
 
 <body>
@@ -127,7 +73,7 @@ $cat_sub = getSubCat($product['sub_cat_id']);?>
                 </li>
                 <!-- Cart -->
                 <li class="nav-item me-3">
-                    <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    <a class="nav-link" href="../customer/cart_view.php"><i class="fas fa-shopping-cart"></i> Cart</a>
                 </li>
                 <!-- User Dropdown -->
                 <li class="nav-item dropdown">
