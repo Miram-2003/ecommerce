@@ -39,5 +39,10 @@ function delete_product($id){
 
 }
 
+function getProductImageName($id){
+    $a_product = new product_class();
+    $result = $a_product->getProductImageName($id);
+    return $result;
+}
 
 ?>

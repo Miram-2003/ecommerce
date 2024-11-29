@@ -67,6 +67,14 @@ class product_class extends db_connection{
 		return $update_result;
 	}
 
+	public function getProductImageName($id){
+		$ndb = new db_connection();
+		$sql = "SELECT `name`,`img`  FROM `products` WHERE `product_id` = $id";
+		$result = $ndb->db_fetch_one($sql);
+		return $result;
+	}
+
+	
 
 }
 
