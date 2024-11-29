@@ -65,7 +65,7 @@ function get_order_items($order_id) {
 
 
 }
-  function get_order_history($user_id) {
+ public function get_order_history($user_id) {
     // Connect to the database
     $conn = $this->db_conn();
 

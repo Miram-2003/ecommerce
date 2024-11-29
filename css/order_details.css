@@ -1,0 +1,51 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border: 1px solid #dee2e6;
+}
+
+.order-summarry {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.order-items {
+    margin-top: 20px;
+}
+
+.status {
+    display: inline-block; /* Make it inline-block to fit content */
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    padding: 1px 10px; /* Padding for visual spacing */
+    border-radius: 2px; /* Rounded corners */
+    margin: 3px 0;
+}
+
+.product-image {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}

@@ -1,28 +1,13 @@
 <?php
 session_start();
-require_once('../settings/core.php');
-require_once("../controllers/cart_controller.php");
-require_once("../controllers/product_controller.php");
-
-
-check_user_login();
-$id = $_SESSION['user_id'];
-$name = $_SESSION['user_name'];
-$email  = $_SESSION['email'];
-
-// Ensure the user is logged in
-if (!isset($_SESSION['user_id'])) {
-    die("Please log in to view your cart.");
-}
+require_once("../controllers/order_controller.php");
+// Update this with your actual controller
+require_once('../controllers/product_controller.php'); // Update this with your actual controller
 
 $user_id = intval($_SESSION['user_id']);
-
-// Fetch all items in the user's cart
-$cart_items = get_cart_items($user_id); // Replace with your function to fetch cart items
-
-$products = get_allproduct();
-
-
+$name = $_SESSION['user_name'];
+$email  = $_SESSION['email'];
+$orders = get_orders($user_id);
 ?>
 
 <!DOCTYPE html>
@@ -31,17 +16,13 @@ $products = get_allproduct();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart</title>
-    <!-- Bootstrap CSS -->
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
-    
+    <link rel="stylesheet" href="../css/order_veiw.css">
 </head>
-
 <body>
-
-
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
         <div class="container-fluid">
             <!-- Brand -->
@@ -69,7 +50,7 @@ $products = get_allproduct();
                     <!-- Search Bar -->
                     <li class="nav-item me-3">
                         <form class="d-flex">
-                            <input class="form-control lg me-2" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control me-2" type="search" placeholder="Search by product or category" aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>
@@ -87,99 +68,56 @@ $products = get_allproduct();
                             <li><a class="dropdown-item" href="../login/logout_customer.php">Sign out</a></li>
                         </ul>
                     </li>
+                </ul>
             </div>
         </div>
     </nav>
-    <main>
-        <div class="container my-5">
-            <div class="row">
-                <!-- Cart Items -->
-                <div class="col-md-8">
-                    <!-- // <h2 class="mb-4">Cart ()</h2> -->
-                    <?php if (!empty($cart_items)) { ?>
-                        <?php foreach ($cart_items as $item) { ?>
-                            <div class="cart-item d-flex align-items-center">
-                                <img src="../product_images/<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" style="width: 100px; height: 100px; object-fit: cover; margin-right: 20px;">
-                                <div class="flex-grow-1">
-                                    <h5><?php echo htmlspecialchars($item['product_name']); ?></h5>
-                                    <p class="mb-1">
-                                        <span class="text-primary fw-bold">GHC<?php echo number_format($item['price'], 2); ?></span>
-                                        <?php if (isset($item['original_price'])) { ?>
-                                            <span class="price-original">GHC<?php echo number_format($item['original_price'], 2); ?></span>
-                                            <span class="discount-badge"><?php echo round((($item['original_price'] - $item['price']) / $item['original_price']) * 100); ?>% OFF</span>
-                                        <?php } ?>
-                                    </p>
-                                    <p class="text-success"><?php echo htmlspecialchars($item['stock_status'] ?? 'In Stock'); ?></p>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <form action="../actions/update_cart.php" method="POST" class="d-inline">
-                                        <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
-                                        <input type="hidden" name="quantity" value="<?php echo $item['quantity']; ?>">
-                                        <button type="submit" name="action"  value="decrease"  class="btn btn-quantity">-</button>
-                                        <span class="mx-2"><?php echo $item['quantity']; ?></span>
-                                        <button type="submit" name="action"  value="increase" class="btn btn-quantity">+</button>
-                                    </form>
-                                </div>
-                                <form action="../actions/delete_cart.php" method="POST" class="ms-3">
-                                    <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
-                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Remove</button>
-                                </form>
-                            </div>
-                        <?php } ?>
-                    <?php } else { ?>
-                        <p>Your cart is empty.</p> 
-                        <a href="../customer/customer_index.php" >  Continue Shopping  </a>
-                    <?php } ?>
-                </div>
 
-                 <!-- Cart Summary -->
-            <?php if (!empty($cart_items)) { ?>
-                <div class="col-md-4">
-                    <div class="cart-summary">
-                        <h5>Cart Summary</h5>
-                        <hr>
-                        <p>Subtotal: <span class="fw-bold">GHC<?php echo number_format(array_reduce($cart_items, function ($total, $item) {
-                                                                    return $total + ($item['price'] * $item['quantity']);
-                                                                }, 0), 2); ?></span></p>
-                        <p class="text-muted">Delivery fees not included yet.</p>
-                       
-                        <a href="../customer/confirm_order.php" class="btn btn-info">Checkout (GHC<?php echo number_format(array_reduce($cart_items, function ($total, $item) {                                                     return $total + ($item['price'] * $item['quantity']);
-                                                                    }, 0), 2); ?>)</a>
-                       
-                    </div>
-                </div>
-            <?php } ?>
+    <div class="container mt-5 pt-4 order-status-summary ">
+        <!-- Order Status Summary -->
+        <div class="mb-4">
+            <h5>Orders</h5>
+            <div>
+                <span class="badge bg-success">Ongoing/Delivered ()</span>
+                <span class="badge bg-danger">Canceled/Returned ()</span>
+            </div>
         </div>
 
+    <?php
+    // Check if there are any orders
+    if (empty($orders)) {
+        echo "<p>No orders found.</p>";
+    } else {
+        echo '<div class="container mt-1 pt-1">';
+        foreach ($orders as $order) {
+            $order_id = $order['order_id'];
+            $order_details = get_order_items($order_id);
 
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <?php
-            if (!empty($products)) {
-                foreach ($products as $product) {
-                    ?>
-                    <div class="col">
-                        <div class="card product-card">
-                            <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
-                            <div class="card-body">
-                                <h5 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h5>
-                                <p class="product-price">$<?php echo number_format($product['price'], 2); ?></p>
-                                <a href="product_detail.php?id=<?php echo $product['product_id']; ?>" class="btn btn-custom btn-sm">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                }
-            } else {
-                echo "<p class='text-muted text-center'>No products available at the moment.</p>";
+            foreach ($order_details as $item) {
+                $product_id = $item['product_id'];
+                $product = get_a_product_ctr($product_id); // Corrected function call
+
+                // Ensure the product has an image
+                $product_image = !empty($product['img']) ? "../product_images/" . $product['img'] : 'path/to/default/image.jpg'; // Default image if none exists
+
+                // Display order information
+                echo '<div class="order-item d-flex align-items-start">';
+                echo '<img src="' . htmlspecialchars($product_image) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-image">';
+                echo '<div class="product-info ms-3">';
+                echo '<div class="product-name">' . htmlspecialchars($product['name']) . '</div>';
+                echo '<div class="order-id">Order ' . htmlspecialchars($order['invoice_no']) . '</div>';
+                echo '<div class="order-status">' . htmlspecialchars($order['status']) . '</div>'; // Assuming 'status' exists
+                echo '<div class="order-date">On ' . date("l, d-m", strtotime($order['created_at'])) . '</div>'; // Format the date
+                echo '</div>'; // Close product-info
+                echo '<a href="../customer/order_details.php?order_id=' . htmlspecialchars($order_id) . '" class="btn btn-link see-details">SEE DETAILS</a>';
+                echo '</div>'; // Close order-item
             }
-            ?>
-        </div>
+        }echo '</div>';
+    }
+    ?>
 
     </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Shopify. All rights reserved.</p>
-    </footer>
+
 
 </body>
 

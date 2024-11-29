@@ -1,0 +1,66 @@
+body {
+    
+    background-color: #f4f4f4;
+}
+.order-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 25px ;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-image {
+    width: 80px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px;
+}
+
+.product-info {
+    flex-grow: 1; /* Allow product info to grow */
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.order-id {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.order-status {
+    display: inline-block; /* Make it inline-block to fit content */
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    padding: 1px 10px; /* Padding for visual spacing */
+    border-radius: 2px; /* Rounded corners */
+    margin: 3px 0; /
+}
+
+.order-date {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: #007bff; /* Bootstrap link color */
+}
+
+.see-details {
+    padding-left: 10px; /* Space between text and button */
+}
+.order-status-summary{
+    background-color: #ffffff;
+    border-radius: 2px; 
+    padding-top: 50px;
+    
+   
+}
+.mt-5 {
+    margin-top: 8rem !important;
+}
