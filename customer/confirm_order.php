@@ -12,6 +12,8 @@ $cart_items = get_cart_items($user_id);
 $total_price = array_reduce($cart_items, function ($total, $item) {
     return $total + ($item['price'] * $item['quantity']);
 }, 0);
+
+$total_price = ($total_price + 50 + 20);
 ?>
 
 <!DOCTYPE html>
@@ -258,7 +260,7 @@ $total_price = array_reduce($cart_items, function ($total, $item) {
 
                         </td>
                         <td>
-                            <strong> 0.00 </strong>
+                            <strong> 50.00 </strong>
                         </td>
                     </tr>
 
@@ -274,7 +276,7 @@ $total_price = array_reduce($cart_items, function ($total, $item) {
 
                         </td>
                         <td>
-                            <strong> 0.00 </strong>
+                            <strong> 20.00 </strong>
                         </td>
                     </tr>
 
@@ -283,7 +285,7 @@ $total_price = array_reduce($cart_items, function ($total, $item) {
             </table>
 
             <div class="order-total mb-4">
-                Total: GHC<?php echo number_format($total_price, 2); ?>
+                Total: GHC<?php echo $total_price; ?>
             </div>
 
             <div class="row">
@@ -303,10 +305,10 @@ $total_price = array_reduce($cart_items, function ($total, $item) {
                 <div class="col-md-6">
                     <div class="info-section">
                         <h5><i class="fas fa-truck"></i> Delivery Information</h5>
-                        <form action="../actions/place_order.php" method="POST">
+                        <form id="paymentForm" action="../actions/place_order.php" method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Delivery Address</label>
-                                <textarea class="form-control" rows="3" name = "delivery_address" required></textarea>
+                                <textarea class="form-control" rows="3" id="delivery_address" name="delivery_address" required></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -321,11 +323,50 @@ $total_price = array_reduce($cart_items, function ($total, $item) {
                                 <i class="fas fa-shopping-cart"></i> Place Order
                             </button>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+                        <script>
+                            const paymentForm = document.getElementById('paymentForm');
+
+                            // Attach an event listener to the form submission
+                            paymentForm.addEventListener("submit", function(e) {
+                                e.preventDefault(); // Prevent the form from submitting immediately
+
+                                const paymentMethod = document.getElementById('payment_method').value;
+
+                                if (paymentMethod === 'card_payment') {
+                                    // Trigger the Paystack payment if 'card_payment' is selected
+                                    payWithPaystack();
+                                } else {
+                                    // If 'cash_on_delivery' is selected, submit the form normally
+                                    paymentForm.submit();
+                                }
+                            });
+
+                            function payWithPaystack() {
+                                let handler = PaystackPop.setup({
+                                    key: 'pk_test_2d971b6500fc1b1c143dfc4ed9e02794511be64f', // Replace with your public key
+                                    email: '<?php echo $email; ?>', // Email of the customer
+                                    amount: (<?php echo $total_price; ?> *100), // Amount in kobo (multiply by 100 to convert to kobo)
+                                    currency: 'GHS', // Use 'GHS' for Ghana Cedis
+                                    ref: '' + Math.floor((Math.random() * 1000000000) + 1), // Generates a random reference
+                                    onClose: function() {
+                                        alert('Transaction was not completed, window closed.');
+                                    },
+                                    callback: function(response) {
+                                        let message = 'Payment complete! Reference: ' + response.reference;
+                                        alert(message);
+
+                                        // Redirect after successful payment to your callback URL
+                                        window.location.replace("../actions/place_order.php?reference=" + response.reference + "&delivery_address=" + encodeURIComponent(document.getElementById('delivery_address').value));
+                                    }
+                                });
+
+                                handler.openIframe(); // Opens the Paystack payment modal
+                            }
+                        </script>
+
+
+                        <script src="https://js.paystack.co/v1/inline.js"></script>
 
 </body>
 

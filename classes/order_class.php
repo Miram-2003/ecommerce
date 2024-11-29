@@ -33,6 +33,60 @@ class order_class extends db_connection{
 
     // Clear the cart after order is placed
     clear_cart($user_id);
+  return $order_id;
+}
+
+
+function get_order_details($order_id) {
+    // Connect to the database
+    $conn = $this->db_conn();
+
+    // Get the order details
+    $query = "SELECT * FROM orders WHERE order_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $order_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc();
+}
+
+function get_order_items($order_id) {
+ 
+    $conn = $this->db_conn();
+
+  
+    $query = "SELECT * FROM order_items WHERE order_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $order_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+}
+  function get_order_history($user_id) {
+    // Connect to the database
+    $conn = $this->db_conn();
+
+    // Get the order history
+    $query = "SELECT * FROM orders WHERE customer_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+  function update_order_status($order_id, $status) {
+    // Connect to the database
+    $conn = $this->db_conn();
+
+    // Update the order status
+    $query = "UPDATE orders SET status = ? WHERE order_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("si", $status, $order_id);
+    return $stmt->execute();
+
 }
 }
 ?>

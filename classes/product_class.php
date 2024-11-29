@@ -59,6 +59,14 @@ class product_class extends db_connection{
 
 	}
 
+	public function updateProdcut($qty, $id){
+		$ndb = new db_connection();
+		$sql = "UPDATE `products` SET `qty` = '$qty' WHERE `product_id` = $id";
+		$update_result = $this->db_query($sql);
+
+		return $update_result;
+	}
+
 
 }
 
