@@ -57,8 +57,8 @@ $total_price = ($total_price + 50 + 20);
                 <ul class="navbar-nav ms-auto align-items-center">
                     <!-- Search Bar -->
                     <li class="nav-item me-3">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search by product or category" aria-label="Search">
+                        <form class="d-flex" action = "../customer/product_search.php" method = "GET">
+                            <input class="form-control me-2" type="search" placeholder="Search by product or category" name = 'search' aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>

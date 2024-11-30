@@ -174,7 +174,7 @@ $products = get_allproduct();
         .product-card img {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .product-card .card-body {
@@ -224,8 +224,8 @@ $products = get_allproduct();
                 <ul class="navbar-nav ms-auto align-items-center">
                     <!-- Search Bar -->
                     <li class="nav-item me-3">
-                        <form class="d-flex">
-                            <input class="form-control lg me-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="d-flex" action = "../customer/product_search.php" method = "GET">
+                            <input class="form-control lg me-2" type="search" placeholder="Search" name = 'search' aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>

@@ -17,6 +17,8 @@ $orders = get_orders($user_id);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/order_veiw.css">
@@ -48,8 +50,8 @@ $orders = get_orders($user_id);
                 <ul class="navbar-nav ms-auto align-items-center">
                     <!-- Search Bar -->
                     <li class="nav-item me-3">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search by product or category" aria-label="Search">
+                        <form class="d-flex" action = "../customer/product_search.php" method = "GET">
+                            <input class="form-control me-2" type="search" placeholder="Search by product or category" name = 'search' aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>

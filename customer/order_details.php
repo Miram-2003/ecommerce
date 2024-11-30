@@ -59,9 +59,9 @@ if (isset($_GET['order_id'])) {
                 <!-- Right-aligned links -->
                 <ul class="navbar-nav ms-auto align-items-center">
                     <!-- Search Bar -->
-                    <li class="nav-item me-3">
+                    <li class="nav-item me-3" action = "../customer/product_search.php" method = "GET">
                         <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search by product or category" aria-label="Search">
+                            <input class="form-control me-2" type="search" placeholder="Search by product or category" name = 'search' aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>
@@ -83,7 +83,7 @@ if (isset($_GET['order_id'])) {
             </div>
         </div>
     </nav>
-    <div class="container mt-5">
+    <div class="container mt-5" style =" margin-top: 8rem !important;">
         <a href="../customer/orders_view.php"><i class="fas fa-arrow-left fa-2x"></i></a>
         <span style="margin-left: 10px; font-size:x-large;"><b>Order Details</b></span>
         <hr>

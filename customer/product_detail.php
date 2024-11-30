@@ -67,12 +67,12 @@ $cat_sub = getSubCat($product['sub_cat_id']);?>
                 <!-- Search Bar -->
                 <li class="nav-item me-3">
                     <form class="d-flex">
-                        <input class="form-control lg me-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control lg me-2" type="search" placeholder="Search" name = 'search' aria-label="Search">
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                 </li>
                 <!-- Cart -->
-                <li class="nav-item me-3">
+                <li class="nav-item me-3" action = "../customer/product_search.php" method = "GET">
                     <a class="nav-link" href="../customer/cart_view.php"><i class="fas fa-shopping-cart"></i> Cart</a>
                 </li>
                 <!-- User Dropdown -->

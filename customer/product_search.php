@@ -1,16 +1,24 @@
 <?php
 session_start();
-require_once("../controllers/product_controller.php");
+require_once("../controllers/search_controller.php");
 
 require_once('../settings/core.php');
 
-check_user_login();
+
 $id = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
 $email  = $_SESSION['email'];
 
-// Fetch all products
-$products = get_allproduct();
+
+
+
+if (isset($_GET['search'])) {
+    $search_query = trim($_GET['search']);
+
+}
+
+
+$products = searchItem($search_query);
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +89,7 @@ $products = get_allproduct();
 
     <!-- Main Content -->
     <div class="container mt-5 pt-4">
-        <h2 class="text-center my-4">Explore Our Products</h2>
+        <h2 class="text-center my-4">Products for <b style = "color: orange"> <?php echo $search_query ?><b></b></h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
             if (!empty($products)) {
@@ -100,7 +108,7 @@ $products = get_allproduct();
                     <?php
                 }
             } else {
-                echo "<p class='text-muted text-center'>No products available at the moment.</p>";
+                echo "<p class='text-muted text-center'>No product found for $search_query </p>";
             }
             ?>
         </div>
