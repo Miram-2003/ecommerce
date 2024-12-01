@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once("../controllers/order_controller.php");
+require_once("../controllers/cat_controller.php");
+
 // Update this with your actual controller
 require_once('../controllers/product_controller.php'); // Update this with your actual controller
 
@@ -19,10 +21,12 @@ $orders = get_orders($user_id);
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/order_veiw.css">
+    <link rel="stylesheet" href="../css/side.css">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
         <div class="container-fluid">
@@ -50,8 +54,8 @@ $orders = get_orders($user_id);
                 <ul class="navbar-nav ms-auto align-items-center">
                     <!-- Search Bar -->
                     <li class="nav-item me-3">
-                        <form class="d-flex" action = "../customer/product_search.php" method = "GET">
-                            <input class="form-control me-2" type="search" placeholder="Search by product or category" name = 'search' aria-label="Search">
+                        <form class="d-flex" action="../customer/product_search.php" method="GET">
+                            <input class="form-control me-2" type="search" placeholder="Search by product or category" name='search' aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>
@@ -73,7 +77,10 @@ $orders = get_orders($user_id);
             </div>
         </div>
     </nav>
+    <div class="container mt-5 pt-4">
 
+        <?php echo getAllsubcat(); ?>
+    </div>
     <div class="container mt-5 pt-4 order-status-summary ">
         <!-- Order Status Summary -->
         <div class="mb-4">
@@ -84,38 +91,39 @@ $orders = get_orders($user_id);
             </div>
         </div>
 
-    <?php
-    // Check if there are any orders
-    if (empty($orders)) {
-        echo "<p>No orders found.</p>";
-    } else {
-        echo '<div class="container mt-1 pt-1">';
-        foreach ($orders as $order) {
-            $order_id = $order['order_id'];
-            $order_details = get_order_items($order_id);
+        <?php
+        // Check if there are any orders
+        if (empty($orders)) {
+            echo "<p>No orders found.</p>";
+        } else {
+            echo '<div class="container mt-1 pt-1">';
+            foreach ($orders as $order) {
+                $order_id = $order['order_id'];
+                $order_details = get_order_items($order_id);
 
-            foreach ($order_details as $item) {
-                $product_id = $item['product_id'];
-                $product = get_a_product_ctr($product_id); // Corrected function call
+                foreach ($order_details as $item) {
+                    $product_id = $item['product_id'];
+                    $product = get_a_product_ctr($product_id); // Corrected function call
 
-                // Ensure the product has an image
-                $product_image = !empty($product['img']) ? "../product_images/" . $product['img'] : 'path/to/default/image.jpg'; // Default image if none exists
+                    // Ensure the product has an image
+                    $product_image = !empty($product['img']) ? "../product_images/" . $product['img'] : 'path/to/default/image.jpg'; // Default image if none exists
 
-                // Display order information
-                echo '<div class="order-item d-flex align-items-start">';
-                echo '<img src="' . htmlspecialchars($product_image) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-image">';
-                echo '<div class="product-info ms-3">';
-                echo '<div class="product-name">' . htmlspecialchars($product['name']) . '</div>';
-                echo '<div class="order-id">Order ' . htmlspecialchars($order['invoice_no']) . '</div>';
-                echo '<div class="order-status">' . htmlspecialchars($order['status']) . '</div>'; // Assuming 'status' exists
-                echo '<div class="order-date">On ' . date("l, d-m", strtotime($order['created_at'])) . '</div>'; // Format the date
-                echo '</div>'; // Close product-info
-                echo '<a href="../customer/order_details.php?order_id=' . htmlspecialchars($order_id) . '" class="btn btn-link see-details">SEE DETAILS</a>';
-                echo '</div>'; // Close order-item
+                    // Display order information
+                    echo '<div class="order-item d-flex align-items-start">';
+                    echo '<img src="' . htmlspecialchars($product_image) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-image">';
+                    echo '<div class="product-info ms-3">';
+                    echo '<div class="product-name">' . htmlspecialchars($product['name']) . '</div>';
+                    echo '<div class="order-id">Order ' . htmlspecialchars($order['invoice_no']) . '</div>';
+                    echo '<div class="order-status">' . htmlspecialchars($order['status']) . '</div>'; // Assuming 'status' exists
+                    echo '<div class="order-date">On ' . date("l, d-m", strtotime($order['created_at'])) . '</div>'; // Format the date
+                    echo '</div>'; // Close product-info
+                    echo '<a href="../customer/order_details.php?order_id=' . htmlspecialchars($order_id) . '" class="btn btn-link see-details">SEE DETAILS</a>';
+                    echo '</div>'; // Close order-item
+                }
             }
-        }echo '</div>';
-    }
-    ?>
+            echo '</div>';
+        }
+        ?>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
