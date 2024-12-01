@@ -20,6 +20,10 @@ function get_cat_ctr() {
     return $result;
 }
 
+function getAllsubcat(){
+    $get_cat = new cat_class();
+    $result = $get_cat->getfilterCategoryOptions();
+}
 
 function get_a_cat_ctr($id){
     $id = (int)$id;

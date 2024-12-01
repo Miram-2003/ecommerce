@@ -79,6 +79,25 @@ $products = get_allproduct();
         </div>
     </nav>
 
+    <div class="container mt-5 pt-4">
+    <h3 class="text-center my-4">Filter by Category</h3>
+    <div class="category-scroll">
+        <ul class="list-inline d-flex flex-nowrap">
+            <?php if (!empty($categories)) {
+                foreach ($categories as $category) { ?>
+                    <li class="list-inline-item">
+                        <a href="filter.php?category=<?php echo urlencode($category['sub_id']); ?>" class="btn btn-outline-primary me-2">
+                            <?php echo htmlspecialchars($category['sub_name']); ?>
+                        </a>
+                    </li>
+                <?php }
+            } else {
+                echo "<li class='list-inline-item'>No categories available.</li>";
+            } ?>
+        </ul>
+    </div>
+</div>
+
     <!-- Main Content -->
     <div class="container mt-5 pt-4">
         <h2 class="text-center my-4">Explore Our Products</h2>

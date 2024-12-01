@@ -31,6 +31,15 @@ class cat_class extends db_connection{
 		return $result;
 	}
 
+
+
+	public function get_sub_cat(){
+		$ndb = new db_connection();
+		$sql="SELECT * FROM `sub_cat`";
+		$result=$ndb->db_fetch_all($sql);
+		return $result;
+	}
+
 	public function get_a_cat($id){
 		$ndb = new db_connection();
 		$id = (int) mysqli_real_escape_string($ndb->db_conn(),$id);
@@ -155,7 +164,70 @@ class cat_class extends db_connection{
 	}
 	
 
-}
 
 
+
+
+	public function getfilterCategoryOptions() {
+		$conn = new db_connection();
+	
+		// Fetch all main categories
+		$mainQuery = "SELECT cat_id, cat_name FROM main_cat ORDER BY cat_name";
+		$mainCategories = $this->db_fetch_all($mainQuery);
+	
+		// Fetch all subcategories
+		$subQuery = "SELECT sub_id, sub_name, cat_id FROM sub_cat ORDER BY sub_name";
+		$subCategories = $this->db_fetch_all($subQuery);
+	
+		// Organize subcategories by main category
+		$categoryData = [];
+		if (!empty($subCategories)) {
+			foreach ($subCategories as $sub) {
+				$categoryData[$sub['cat_id']][] = [
+					'subcategory_id' => $sub['sub_id'],
+					'subcategory_name' => $sub['sub_name']
+				];
+			}
+		}
+	
+		// Generate HTML for main categories with dropdown for subcategories
+		$output = '<div class="container mt-3"><h3>Select a Category</h3><div class="d-flex flex-wrap">';
+		
+		foreach ($mainCategories as $mainCat) {
+			$output .= '<div class="main-cat me-3" data-cat-id="' . htmlspecialchars($mainCat['cat_id']) . '" style="cursor: pointer;">
+							' . htmlspecialchars($mainCat['cat_name']) . '
+						</div>
+						<ul class="sub-cat-list" id="sub-cat-' . htmlspecialchars($mainCat['cat_id']) . '" style="display:none;">';
+			
+			// Add subcategories as hidden initially
+			if (isset($categoryData[$mainCat['cat_id']])) {
+				foreach ($categoryData[$mainCat['cat_id']] as $sub) {
+					$output .= '<li>' . htmlspecialchars($sub['subcategory_name']) . '</li>';
+				}
+			}
+	
+			$output .= '</ul>';
+		}
+		
+		$output .= '</div></div>';
+	
+		// Add JavaScript to handle click events
+		$output .= '<script>
+			document.querySelectorAll(".main-cat").forEach(function(cat) {
+				cat.addEventListener("click", function(event) {
+					const catId = this.getAttribute("data-cat-id");
+					const subCatList = document.getElementById("sub-cat-" + catId);
+					
+					// Toggle display of subcategories
+					if (subCatList.style.display === "none") {
+						subCatList.style.display = "block";
+					} else {
+						subCatList.style.display = "none";
+					}
+				});
+			});
+		</script>';
+	
+		return $output;
+	}}
 ?>
