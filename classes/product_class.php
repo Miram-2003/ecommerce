@@ -74,7 +74,17 @@ class product_class extends db_connection{
 		return $result;
 	}
 
+	public function get_product_bycat($cid){
+		$id = (int)$cid;
+		$ndb = new db_connection();
+		$sql= "SELECT * FROM `products` WHERE  `sub_cat_id` =$cid";
+		$result = $ndb->db_fetch_one($sql);
+		return $result;
+
 	
+
+	}
+
 
 }
 

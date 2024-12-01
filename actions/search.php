@@ -9,12 +9,10 @@ $id = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
 $email  = $_SESSION['email'];
 
-// Fetch all products
+
 $products = get_allproduct();
 
-// Fetch categories
 
-//$categories = getAllsubcat();
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +85,7 @@ $products = get_allproduct();
 
     <!-- Category Filter Section -->
     <!-- Main Content Area -->
-<div class="container mt-5 pt-4">
+<di class="container mt-5 pt-4">
     <?php echo getAllsubcat(); ?>
 </div>
 

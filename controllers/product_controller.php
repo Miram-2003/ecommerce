@@ -44,5 +44,10 @@ function getProductImageName($id){
     $result = $a_product->getProductImageName($id);
     return $result;
 }
+function get_product_by_cat($id){
+    $a_product = new product_class();
+    $result = $a_product->get_product_bycat($id);
+    return $result;
+}
 
 ?>
