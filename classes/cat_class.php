@@ -229,8 +229,30 @@ class cat_class extends db_connection{
 				</ul>
 			</div>
 		</div>
-		
-		';
+		<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			const subcategoryItems = document.querySelectorAll(".filter-subcategory");
+			
+			subcategoryItems.forEach(function(item) {
+				item.addEventListener("click", function(e) {
+					e.preventDefault();
+					const mainCatId = this.getAttribute("data-main-cat-id");
+					const subCatId = this.getAttribute("data-sub-id");
+					const subCatName = this.textContent.trim();
+					
+					console.log("Selected Subcategory:", {
+						mainCategoryId: mainCatId,
+						id: subCatId,
+						name: subCatName
+					});
+					
+					// Add your filtering or navigation logic here
+					// For example:
+					window.location.href = `../customer/filter_product.php?cat=${subCatId}`;
+				});
+			});
+		});
+		</script>';
 	
 		return $sidebarHtml;
 	}

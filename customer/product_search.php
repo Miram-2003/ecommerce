@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("../controllers/search_controller.php");
-
+require_once("../controllers/cat_controller.php");
 require_once('../settings/core.php');
 
 
@@ -33,6 +33,7 @@ $products = searchItem($search_query);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/customer_index.css">
+    <link rel="stylesheet" href="../css/side.css">
 </head>
 
 <body>
@@ -87,9 +88,16 @@ $products = searchItem($search_query);
         </div>
     </nav>
 
+    
+    <div class="container mt-5 pt-4">
+   
+        <?php echo getAllsubcat(); ?>
+    </div>
+    
+
     <!-- Main Content -->
     <div class="container mt-5 pt-4">
-        <h2 class="text-center my-4">Products for <b style = "color: orange"> <?php echo $search_query ?><b></b></h2>
+        <h2 class="text-center my-4">Products for: <b style = "color:#004080"> <?php echo $search_query ?></b></h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
             if (!empty($products)) {

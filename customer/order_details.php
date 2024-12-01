@@ -29,12 +29,12 @@ if (isset($_GET['order_id'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/order_details.css">
-   
+
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
         <div class="container-fluid">
             <!-- Brand -->
             <a class="navbar-brand" href="#">POSify</a>
@@ -59,9 +59,9 @@ if (isset($_GET['order_id'])) {
                 <!-- Right-aligned links -->
                 <ul class="navbar-nav ms-auto align-items-center">
                     <!-- Search Bar -->
-                    <li class="nav-item me-3" action = "../customer/product_search.php" method = "GET">
+                    <li class="nav-item me-3" action="../customer/product_search.php" method="GET">
                         <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search by product or category" name = 'search' aria-label="Search">
+                            <input class="form-control me-2" type="search" placeholder="Search by product or category" name='search' aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>
@@ -83,7 +83,7 @@ if (isset($_GET['order_id'])) {
             </div>
         </div>
     </nav>
-    <div class="container mt-5" style =" margin-top: 8rem !important;">
+    <div class="container mt-5" style=" margin-top: 8rem !important;">
         <a href="../customer/orders_view.php"><i class="fas fa-arrow-left fa-2x"></i></a>
         <span style="margin-left: 10px; font-size:x-large;"><b>Order Details</b></span>
         <hr>
@@ -142,8 +142,9 @@ if (isset($_GET['order_id'])) {
             </div>
         </div>
 
-        #
+
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

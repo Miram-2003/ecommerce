@@ -1,13 +1,27 @@
 <?php
 session_start();
-require_once("../controllers/order_controller.php");
-// Update this with your actual controller
-require_once('../controllers/product_controller.php'); // Update this with your actual controller
+require_once("../controllers/product_controller.php");
+require_once("../controllers/cat_controller.php");
 
-$user_id = intval($_SESSION['user_id']);
+require_once('../settings/core.php');
+check_user_login();
+$id = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
 $email  = $_SESSION['email'];
-$orders = get_orders($user_id);
+
+if (isset($_GET['cat'])) {
+    $id= trim($_GET['cat']);
+
+}
+
+
+
+// Fetch all products
+$products = get_product_by_cat($id);
+$cat =  getSubCat($id)
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -16,14 +30,18 @@ $orders = get_orders($user_id);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Landing Page</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="../css/navbr.css">
-    <link rel="stylesheet" href="../css/order_veiw.css">
+    <link rel="stylesheet" href="../css/side.css">
+
+    <link rel="stylesheet" href="../css/customer_index.css">
 </head>
+
 <body>
+    <!-- Fixed Top Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
         <div class="container-fluid">
             <!-- Brand -->
@@ -74,52 +92,46 @@ $orders = get_orders($user_id);
         </div>
     </nav>
 
-    <div class="container mt-5 pt-4 order-status-summary ">
-        <!-- Order Status Summary -->
-        <div class="mb-4">
-            <h5>Orders</h5>
-            <div>
-                <span class="badge bg-success">Ongoing/Delivered ()</span>
-                <span class="badge bg-danger">Canceled/Returned ()</span>
-            </div>
-        </div>
-
-    <?php
-    // Check if there are any orders
-    if (empty($orders)) {
-        echo "<p>No orders found.</p>";
-    } else {
-        echo '<div class="container mt-1 pt-1">';
-        foreach ($orders as $order) {
-            $order_id = $order['order_id'];
-            $order_details = get_order_items($order_id);
-
-            foreach ($order_details as $item) {
-                $product_id = $item['product_id'];
-                $product = get_a_product_ctr($product_id); // Corrected function call
-
-                // Ensure the product has an image
-                $product_image = !empty($product['img']) ? "../product_images/" . $product['img'] : 'path/to/default/image.jpg'; // Default image if none exists
-
-                // Display order information
-                echo '<div class="order-item d-flex align-items-start">';
-                echo '<img src="' . htmlspecialchars($product_image) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-image">';
-                echo '<div class="product-info ms-3">';
-                echo '<div class="product-name">' . htmlspecialchars($product['name']) . '</div>';
-                echo '<div class="order-id">Order ' . htmlspecialchars($order['invoice_no']) . '</div>';
-                echo '<div class="order-status">' . htmlspecialchars($order['status']) . '</div>'; // Assuming 'status' exists
-                echo '<div class="order-date">On ' . date("l, d-m", strtotime($order['created_at'])) . '</div>'; // Format the date
-                echo '</div>'; // Close product-info
-                echo '<a href="../customer/order_details.php?order_id=' . htmlspecialchars($order_id) . '" class="btn btn-link see-details">SEE DETAILS</a>';
-                echo '</div>'; // Close order-item
-            }
-        }echo '</div>';
-    }
-    ?>
-
+    <div class="container mt-5 pt-4">
+   
+        <?php echo getAllsubcat(); ?>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</div>
 
+    <!-- Main Content -->
+    <div class="container mt-5 pt-4">
+        <h2 class="text-center my-4">Projects for category: <span style="color:#004080;"><?php echo $cat ?> </span></h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <?php
+            if (!empty($products)) {
+                foreach ($products as $product) {
+                 
+                    ?>
+                    <div class="col">
+                        <div class="card product-card">
+                            <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h5>
+                                <p class="product-price">GHC<?php echo number_format($product['price'], 2); ?></p>
+                                <a href="product_detail.php?id=<?php echo $product['product_id']; ?>" class="btn btn-custom btn-sm">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "<p class='text-muted text-center'>No products available at the moment.</p>";
+            }
+            ?>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Shopify. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
