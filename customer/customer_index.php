@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("../controllers/product_controller.php");
+require_once("../controllers/cat_controller.php");
 
 require_once('../settings/core.php');
 
@@ -11,6 +12,8 @@ $email  = $_SESSION['email'];
 
 // Fetch all products
 $products = get_allproduct();
+
+
 ?>
 
 <!DOCTYPE html>

@@ -169,17 +169,12 @@ class cat_class extends db_connection{
 
 
 	public function getfilterCategoryOptions() {
-		$conn = new db_connection();
-	
-		// Fetch all main categories
 		$mainQuery = "SELECT cat_id, cat_name FROM main_cat ORDER BY cat_name";
 		$mainCategories = $this->db_fetch_all($mainQuery);
 	
-		// Fetch all subcategories
 		$subQuery = "SELECT sub_id, sub_name, cat_id FROM sub_cat ORDER BY sub_name";
 		$subCategories = $this->db_fetch_all($subQuery);
 	
-		// Organize subcategories by main category
 		$categoryData = [];
 		if (!empty($subCategories)) {
 			foreach ($subCategories as $sub) {
@@ -190,44 +185,55 @@ class cat_class extends db_connection{
 			}
 		}
 	
-		// Generate HTML for main categories with dropdown for subcategories
-		$output = '<div class="container mt-3"><h3>Select a Category</h3><div class="d-flex flex-wrap">';
-		
+		$sidebarHtml = '
+		<div class="categories-sidebar">
+			<div class="categories-main-menu">
+			<h4 class ="text-center mt-5"> Filter by categories</h4>
+				<ul>';
+	
+		// Generate main category navigation items
 		foreach ($mainCategories as $mainCat) {
-			$output .= '<div class="main-cat me-3" data-cat-id="' . htmlspecialchars($mainCat['cat_id']) . '" style="cursor: pointer;">
-							' . htmlspecialchars($mainCat['cat_name']) . '
-						</div>
-						<ul class="sub-cat-list" id="sub-cat-' . htmlspecialchars($mainCat['cat_id']) . '" style="display:none;">';
+			$mainCatId = htmlspecialchars($mainCat['cat_id']);
+			$mainCatName = htmlspecialchars($mainCat['cat_name']);
 			
-			// Add subcategories as hidden initially
-			if (isset($categoryData[$mainCat['cat_id']])) {
-				foreach ($categoryData[$mainCat['cat_id']] as $sub) {
-					$output .= '<li>' . htmlspecialchars($sub['subcategory_name']) . '</li>';
+			$sidebarHtml .= "
+					<li class='category-item' data-main-cat-id='{$mainCatId}'>
+						<span class='category-link'>{$mainCatName}</span>";
+			
+			// Add subcategories
+			if (isset($categoryData[$mainCatId])) {
+				$sidebarHtml .= "
+						<div class='category-subcategories'>";
+				
+				foreach ($categoryData[$mainCatId] as $subCat) {
+					$subCatId = htmlspecialchars($subCat['subcategory_id']);
+					$subCatName = htmlspecialchars($subCat['subcategory_name']);
+					$sidebarHtml .= "
+							<a href='../customer/filter_product.php?cat={$subCatId}'
+							   class='subcategory-link filter-subcategory' 
+							   data-main-cat-id='{$mainCatId}' 
+							   data-sub-id='{$subCatId}'>
+								{$subCatName}
+							</a>";
 				}
+				
+				$sidebarHtml .= "
+						</div>";
 			}
-	
-			$output .= '</ul>';
+			
+			$sidebarHtml .= "
+					</li>";
 		}
-		
-		$output .= '</div></div>';
 	
-		// Add JavaScript to handle click events
-		$output .= '<script>
-			document.querySelectorAll(".main-cat").forEach(function(cat) {
-				cat.addEventListener("click", function(event) {
-					const catId = this.getAttribute("data-cat-id");
-					const subCatList = document.getElementById("sub-cat-" + catId);
-					
-					// Toggle display of subcategories
-					if (subCatList.style.display === "none") {
-						subCatList.style.display = "block";
-					} else {
-						subCatList.style.display = "none";
-					}
-				});
-			});
-		</script>';
+		$sidebarHtml .= '
+				</ul>
+			</div>
+		</div>
+		<script>
+		';
 	
-		return $output;
-	}}
+		return $sidebarHtml;
+	}
+
+}
 ?>

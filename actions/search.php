@@ -28,20 +28,29 @@ $products = get_allproduct();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
+    <link rel="stylesheet" href="../css/side.css">
     <link rel="stylesheet" href="../css/customer_index.css">
+
     <style>
         .main-cat {
-    padding: 10px 15px; /* Padding for clickable area */
-    border: 1px solid #ccc; /* Optional border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #f8f9fa; /* Light background */
+    transition: transform 0.2s;
+}
+
+.main-cat:hover {
+    transform: scale(1.05); /* Scale up on hover for effect */
 }
 
 .sub-cat-list {
-    margin-left: 20px; /* Indent subcategory list */
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    margin-top: -10px; /* Adjust to align with main category */
+    display: none; /* Initially hidden */
 }
+
 .sub-cat-list li {
-    list-style-type: none; /* Remove bullet points */
+    padding: 5px 10px; /* Padding for dropdown items */
 }
     </style>
 </head>

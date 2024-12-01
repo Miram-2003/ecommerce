@@ -23,6 +23,7 @@ function get_cat_ctr() {
 function getAllsubcat(){
     $get_cat = new cat_class();
     $result = $get_cat->getfilterCategoryOptions();
+    return $result;
 }
 
 function get_a_cat_ctr($id){
