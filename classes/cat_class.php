@@ -229,7 +229,7 @@ class cat_class extends db_connection{
 				</ul>
 			</div>
 		</div>
-		<script>
+		
 		';
 	
 		return $sidebarHtml;

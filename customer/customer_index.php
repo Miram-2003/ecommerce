@@ -4,7 +4,6 @@ require_once("../controllers/product_controller.php");
 require_once("../controllers/cat_controller.php");
 
 require_once('../settings/core.php');
-
 check_user_login();
 $id = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
@@ -27,6 +26,8 @@ $products = get_allproduct();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
+    <link rel="stylesheet" href="../css/side.css">
+
     <link rel="stylesheet" href="../css/customer_index.css">
 </head>
 
@@ -83,22 +84,10 @@ $products = get_allproduct();
     </nav>
 
     <div class="container mt-5 pt-4">
-    <h3 class="text-center my-4">Filter by Category</h3>
-    <div class="category-scroll">
-        <ul class="list-inline d-flex flex-nowrap">
-            <?php if (!empty($categories)) {
-                foreach ($categories as $category) { ?>
-                    <li class="list-inline-item">
-                        <a href="filter.php?category=<?php echo urlencode($category['sub_id']); ?>" class="btn btn-outline-primary me-2">
-                            <?php echo htmlspecialchars($category['sub_name']); ?>
-                        </a>
-                    </li>
-                <?php }
-            } else {
-                echo "<li class='list-inline-item'>No categories available.</li>";
-            } ?>
-        </ul>
+   
+        <?php echo getAllsubcat(); ?>
     </div>
+    
 </div>
 
     <!-- Main Content -->
