@@ -31,28 +31,6 @@ $products = get_allproduct();
     <link rel="stylesheet" href="../css/side.css">
     <link rel="stylesheet" href="../css/customer_index.css">
 
-    <style>
-        .main-cat {
-    transition: transform 0.2s;
-}
-
-.main-cat:hover {
-    transform: scale(1.05); /* Scale up on hover for effect */
-}
-
-.sub-cat-list {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    z-index: 1000;
-    margin-top: -10px; /* Adjust to align with main category */
-    display: none; /* Initially hidden */
-}
-
-.sub-cat-list li {
-    padding: 5px 10px; /* Padding for dropdown items */
-}
-    </style>
 </head>
 
 <body>
