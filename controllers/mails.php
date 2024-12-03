@@ -1,24 +1,12 @@
 <?php
 require_once("../controllers/product_controller.php");
 require_once("../controllers/order_controller.php");
-// Include the PHPMailer autoload file (if using Composer)
-require '../vendor/autoload.php'; // Adjust the path if you're using manual download
+
+require '../vendor/autoload.php'; 
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-/**
- * Function to send an order confirmation email.
- *
- * @param string $customer_email The email address of the customer.
- * @param string $customer_name The name of the customer.
- * @param string $order_id The order ID.
- * @param string $payment_method The payment method used (e.g., 'card', 'mobile_money').
- * @param float $amount The total order amount.
- * @param string $currency The currency used (e.g., 'USD', 'GHS').
- * @param string $date The date the order was placed.
- * @return bool True if email was sent successfully, false if there was an error.
- */
 function sendOrderConfirmationEmail($customer_email, $customer_name, $order_id, $payment_method, $amount, $currency, $date, $date_de)
 {
     // Create a new PHPMailer instance

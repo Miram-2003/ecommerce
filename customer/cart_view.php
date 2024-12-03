@@ -1,11 +1,12 @@
 <?php
 session_start();
-require_once('../settings/core.php');
+require_once("../settings/core.php");
 require_once("../controllers/cart_controller.php");
 
 require_once("../controllers/product_controller.php");
+require_once("../controllers/cat_controller.php");
 
-
+$products = get_allproduct();
 
 check_user_login();
 $id = $_SESSION['user_id'];
@@ -16,13 +17,14 @@ $email  = $_SESSION['email'];
 if (!isset($_SESSION['user_id'])) {
     die("Please log in to view your cart.");
 }
+
+
 $user_id = intval($_SESSION['user_id']);
 // Fetch all items in the user's cart
 $cart_items = get_cart_items($user_id);
 $num =  count($cart_items);
 
 
-$products = get_allproduct();
 
 
 ?>
@@ -37,7 +39,6 @@ $products = get_allproduct();
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/side.css">
     <link rel="stylesheet" href="../css/cart.css">
@@ -102,6 +103,7 @@ $products = get_allproduct();
             </div>
         </div>
     </nav>
+
     <div class="container mt-5 pt-4">
 
         <?php echo getAllsubcat(); ?>
