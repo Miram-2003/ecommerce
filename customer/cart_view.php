@@ -22,7 +22,7 @@ $user_id = intval($_SESSION['user_id']);
 // Fetch all items in the user's cart
 $cart_items = get_cart_items($user_id);
 $num =  count($cart_items);
-echo $num;
+
 
 $products = get_allproduct();
 

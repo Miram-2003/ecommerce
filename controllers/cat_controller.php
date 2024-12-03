@@ -1,7 +1,7 @@
 <?php
 
 
-require_once("../classes/cat_class.php");
+require_once("classes/cat_class.php");
 
 
 //cat controols

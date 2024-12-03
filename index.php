@@ -1,8 +1,13 @@
 <?php
 require_once("product_controller.php");
+require_once("controllers/cart_controller.php");
+require_once("controllers/cat_controller.php");
 
 // Fetch all products
 $products = get_allproduct();
+
+$cart_items = get_cart_items($user_id);
+$num =  count($cart_items);
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +56,10 @@ $products = get_allproduct();
         }
 
         /* Product Cards */
+        .card.product-card {
+    width: 90%;
+   
+}
         .product-card {
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -67,7 +76,7 @@ $products = get_allproduct();
         .product-card img {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .product-card .card-body {
@@ -106,8 +115,14 @@ $products = get_allproduct();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    <li class="nav-item me-3">
+                        <a class="nav-link cart-container" href="../customer/cart_view.php">
+                            <i class="fas fa-shopping-cart"></i>
+                            <?php if ($num > 0): ?>
+                                <span class="cart-badge"><?php echo $num; ?></span>
+                            <?php endif; ?>
+                            Cart
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../final-ecommerce/login/register.php">Sell with Us</a>
@@ -126,6 +141,10 @@ $products = get_allproduct();
             </div>
         </div>
     </nav>
+    <div class="container mt-5 pt-4">
+
+        <?php echo getAllsubcat(); ?>
+    </div>
 
     <!-- Main Content -->
     <div class="container mt-5 pt-4">
