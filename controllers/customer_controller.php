@@ -28,10 +28,10 @@ require_once("classes/customer.php");
         );
 
         if ($result) {
-            header('Location:../login/customer_login.php');
+            header('Location:login/customer_login.php');
             exit();
         } else {
-            header('Location:../login/customer_register.php');
+            header('Location: login/customer_register.php');
             exit();
         }
     }
@@ -51,7 +51,7 @@ require_once("classes/customer.php");
             $_SESSION['contact'] = $User['contact'];
          
            
-             header("Location: ../customer/customer_index.php");
+             header("Location: customer/customer_index.php");
              exit();
         } else {
             // Login failed, set error message
@@ -59,7 +59,7 @@ require_once("classes/customer.php");
             $_SESSION['error'] = $loginResult['error'];
             
            
-            header("Location: ../login/customer_login.php");
+            header("Location: login/customer_login.php");
             exit();
         }
     }

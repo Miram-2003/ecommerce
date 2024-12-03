@@ -6,7 +6,7 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     unset($_SESSION['errors']);
     $error =[];
-    //$error['emailexist'] = $_SESSION['exist'];
+    //$error['emailexist'] = $_SESSION['exist']; 
     $data = [
         'name' => htmlspecialchars(trim($_POST['name'])),
         'email' => htmlspecialchars(trim($_POST['email'])),
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['old'] = $data;
           ;
             
-           header("Location: ../login/customer_register.php");
+           header("Location: login/customer_register.php");
             exit;
         }else{
           

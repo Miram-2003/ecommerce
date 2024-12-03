@@ -244,7 +244,7 @@ class cat_class extends db_connection{
 					console.log("Selected subcategory: " + subCatName);
 	
 			
-					window.location.href = "../customer/filter_product.php?cat=" + subCatId;
+					window.location.href = "customer/filter_product.php?cat=" + subCatId;
 	
 				
 				

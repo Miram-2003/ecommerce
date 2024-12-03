@@ -2,7 +2,7 @@
 session_start();
 require_once("controllers/search_controller.php");
 require_once("controllers/cat_controller.php");
-require_once('settings/core.php');
+require_once("settings/core.php");
 
 
 $id = $_SESSION['user_id'];
@@ -69,11 +69,7 @@ $products = searchItem($search_query);
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>
-                    <!-- Cart -->
-                    <li class="nav-item me-3">
-                        <a class="nav-link" href="../customer/cart_view.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-                    </li>
-                    <!-- User Dropdown -->
+                  
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle text-white" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <strong><?php echo htmlspecialchars($name); ?></strong>
@@ -105,7 +101,7 @@ $products = searchItem($search_query);
                     ?>
                     <div class="col">
                         <div class="card product-card">
-                            <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top">
+                            <img src="product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h5>
                                 <p class="product-price">GHC<?php echo number_format($product['price'], 2); ?></p>
