@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once("../controllers/search_controller.php");
-require_once("../controllers/cat_controller.php");
-require_once('../settings/core.php');
+require_once("controllers/search_controller.php");
+require_once("controllers/cat_controller.php");
+require_once('settings/core.php');
 
 
 $id = $_SESSION['user_id'];
@@ -31,9 +31,9 @@ $products = searchItem($search_query);
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/navbr.css">
-    <link rel="stylesheet" href="../css/customer_index.css">
-    <link rel="stylesheet" href="../css/side.css">
+    <link rel="stylesheet" href="css/navbr.css">
+    <link rel="stylesheet" href="css/customer_index.css">
+    <link rel="stylesheet" href="css/side.css">
 </head>
 
 <body>

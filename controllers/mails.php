@@ -1,8 +1,8 @@
 <?php
-require_once("../controllers/product_controller.php");
-require_once("../controllers/order_controller.php");
+require_once("controllers/product_controller.php");
+require_once("controllers/order_controller.php");
 // Include the PHPMailer autoload file (if using Composer)
-require '../vendor/autoload.php'; // Adjust the path if you're using manual download
+require 'vendor/autoload.php'; // Adjust the path if you're using manual download
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

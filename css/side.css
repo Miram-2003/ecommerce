@@ -41,10 +41,10 @@
     display: none;
     position: fixed;
     top: 100px;
-    left: 190px; /* Width of sidebar */
+    left: 190px; 
     width: 250px;
     height: 100vh;
-    background-color: white;
+    background-color: rgb(222, 222, 222);
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     padding: 20px;
     z-index: 999;

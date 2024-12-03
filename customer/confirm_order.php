@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../controllers/cart_controller.php");
+require_once("controllers/cart_controller.php");
 
 $user_id = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];

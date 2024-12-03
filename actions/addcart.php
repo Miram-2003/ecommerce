@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("../controllers/cart_controller.php");
+require_once("controllers/cart_controller.php");
 
 // Ensure the user is logged in
 if (!isset($_SESSION['user_id'])) {

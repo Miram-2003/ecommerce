@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("../controllers/product_controller.php");
-require_once("../controllers/cat_controller.php");
+require_once("controllers/product_controller.php");
+require_once("controllers/cat_controller.php");
 
 require_once('../settings/core.php');
 check_user_login();

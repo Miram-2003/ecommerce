@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("../controllers/order_controller.php");
-require_once("../controllers/cat_controller.php");
+require_once("controllers/order_controller.php");
+require_once("controllers/cat_controller.php");
 
 // Update this with your actual controller
 require_once('../controllers/product_controller.php'); // Update this with your actual controller

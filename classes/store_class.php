@@ -1,5 +1,5 @@
 <?php
-require_once("../settings/db_class.php");
+require_once("settings/db_class.php");
 
 class store_class extends db_connection
 {

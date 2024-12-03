@@ -1,6 +1,6 @@
 <?php
 
-require_once("../controllers/product_controller.php");
+require_once("controllers/product_controller.php");
 
 
 $id = "2";

@@ -1,6 +1,6 @@
 <?php
 
-require_once("../controllers/product_controller.php");
+require_once("controllers/product_controller.php");
 
 function searchItem($search_query) {
     $products = get_allproduct() ; // Ensure this function is defined in your product controller

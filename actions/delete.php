@@ -1,5 +1,5 @@
 <?php
-include("../controllers/general_controller.php");
+include("controllers/general_controller.php");
 if (!isset($_GET["id"])) {
     header("Location: ../view/brand_view.php");
     exit;

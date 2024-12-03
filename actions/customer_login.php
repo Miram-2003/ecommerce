@@ -1,6 +1,6 @@
 <?php
 
-require_once("../controllers/customer_controller.php");
+require_once("controllers/customer_controller.php");
 session_start();
 
 
