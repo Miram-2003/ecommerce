@@ -4,17 +4,25 @@ require_once("settings/db_class.php");
 class customer_class extends db_connection
 {
 
-    public function registerUser($name, $email,  $phone, $region,  $city, $password)
+    public function registerUser($name, $email, $phone, $region, $city, $password)
     {
-        $ndb = new db_connection();
-        $this->db = $ndb->db_conn();
-
+        $db = $this->db_conn();
+        if (!$db) {
+            return false;
+        }
+    
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO `Users`( `fullName`, `email`,  `contact`, `region`, `city`,`password_hash`) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ssisss", $name, $email,  $phone, $region, $city,  $hashedPassword);
-        return $stmt->execute();
+        $sql = "INSERT INTO `Users`(`fullName`, `email`, `contact`, `region`, `city`, `password_hash`) 
+                VALUES ('$name', '$email', '$phone', '$region', '$city', '$hashedPassword')";
+    
+        if (!$this->db_query($sql)) {
+            error_log("Error registering user: " . mysqli_error($this->db));
+            return false;
+        }
+    
+        return true;
     }
+    
 
     // Check if an email already exists
     public function emailExists($email)
@@ -39,32 +47,25 @@ class customer_class extends db_connection
     // Validate login
     public function validateLogin($email, $password)
     {
-        $ndb = new db_connection();
-        $con = $ndb->db_conn();
-    
-        // Check if the email exists
-        $sql = "SELECT * FROM Users WHERE email = ?";
-        $stmt = $con->prepare($sql);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    
-        if ($result->num_rows === 0) {
-            // Email not registered
-            return ['success' => false, 'error' => 'Email not registered'];
+        $db = $this->db_conn();
+        if (!$db) {
+            return ['success' => false, 'error' => 'Database connection failed.'];
         }
     
-        $user = $result->fetch_assoc();
+        $sql = "SELECT * FROM `Users` WHERE `email` = '$email'";
+        $result = $this->db_fetch_one($sql);
     
-        // Check if the password matches
-        if (!password_verify($password, $user['password_hash'])) {
-            // Incorrect password
-            return ['success' => false, 'error' => 'Incorrect password or emai address'];
+        if (!$result) {
+            return ['success' => false, 'error' => 'Email not found.'];
         }
     
-        // Email and password are correct
-        return ['success' => true, 'user' => $user];
+        if (!password_verify($password, $result['password_hash'])) {
+            return ['success' => false, 'error' => 'Invalid email or password.'];
+        }
+    
+        return ['success' => true, 'user' => $result];
     }
+    
 
     public function getAllusers()
     {
