@@ -19,7 +19,7 @@ class db_connection
 	{
 
 		//connection
-		$this->db = mysqli_connect(SERVER, USERNAME, PASSWD, DATABASE, PORT);
+		$this->db = mysqli_connect(SERVER, USERNAME, PASSWD, DATABASE);
 
 		//test the connection
 		if (mysqli_connect_errno()) {
