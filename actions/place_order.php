@@ -12,6 +12,7 @@ $customer_email = $_SESSION['email'];
 $customer_name = $_SESSION['user_name'];
 $cart_items = get_cart_items($user_id);
 
+echo $user_id;
 if (isset($_POST['payment_method'])) {
     $payment_method = $_POST['payment_method'];
     $delivery_address = $_POST['delivery_address'];  // Get the delivery address from the form
@@ -26,12 +27,17 @@ if (isset($_POST['payment_method'])) {
     $currency = 'GHS';  
     $date = date('Y-m-d H:i:s');
     $date_de = date('Y-m-d', strtotime($date. ' + 1 day'));
-
-    if ($payment_method === 'cash_on_delivery') {
+  
+    if ($payment_method == 'cash_on_delivery') {
+        echo "..fd";
         $order_id = create_order($invoice, $user_id, $total_price, $payment_method, $delivery_address);
+        var_dump($order_id);
         sendOrderConfirmationEmailCash($customer_email, $customer_name, $invoice, $payment_method,  $total_price, $currency, $date, $date_de);
+        echo "..fd";
         header("Location: ../customer/cart_view.php");  // Redirect to the action page
         exit();
+    }else{
+        echo "no";
     }
 }
 

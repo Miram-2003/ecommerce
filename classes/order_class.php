@@ -28,7 +28,12 @@ class order_class extends db_connection{
                        VALUES (?, ?, ?, ?)";
         $item_stmt = $conn->prepare($item_query);
         $item_stmt->bind_param("iiid", $order_id, $product_id, $quantity, $price);
-        $item_stmt->execute();
+
+       if($item_stmt->execute()){
+return "ghbdjks";
+       }else{
+        return "vhbjnk";
+       };
     }
 
     // Clear the cart after order is placed
