@@ -12,7 +12,7 @@ $customer_email = $_SESSION['email'];
 $customer_name = $_SESSION['user_name'];
 $cart_items = get_cart_items($user_id);
 
-echo $user_id;
+
 if (isset($_POST['payment_method'])) {
     $payment_method = $_POST['payment_method'];
     $delivery_address = $_POST['delivery_address'];  // Get the delivery address from the form
@@ -29,7 +29,7 @@ if (isset($_POST['payment_method'])) {
     $date_de = date('Y-m-d', strtotime($date. ' + 1 day'));
   
     if ($payment_method == 'cash_on_delivery') {
-        echo "..fd";
+        
         $order_id = create_order($invoice, $user_id, $total_price, $payment_method, $delivery_address);
         var_dump($order_id);
         sendOrderConfirmationEmailCash($customer_email, $customer_name, $invoice, $payment_method,  $total_price, $currency, $date, $date_de);
@@ -48,20 +48,22 @@ if (isset($_GET['reference'])) {
     $pay = verify_payment($reference); 
     $payment_method = 'card_payment';
     
-    
+
 
     if($pay->status == true){
         $data = $pay->data;
-
-        $invoice = $data->receipt_number;
+        
+        $invoice = (int) $data->receipt_number;
         $amount = $data->amount;
         $amount = $amount / 100;
         $method = $data->channel;
         $currency = $data->currency;
-        $reference = $data->reference;
+       
         $date = $data->paid_at;
+       
 
         $order_id = create_order($invoice, $user_id, $amount, $payment_method, $delivery_address);
+        var_dump($order_id);
         
 
        $payment =  recordPayment( $amount, $user_id, $order_id, $currency, $date, $method, $reference);
