@@ -2,8 +2,8 @@
 //Database credentials
 
 define("SERVER","localhost");
-define("USERNAME", "root");
-define("PASSWD", "");
-define("DATABASE", "ecommerce");
+define("USERNAME", "miriam.appiah");
+define("PASSWD", "miriam2003");
+define("DATABASE", "webtech_fall2024_miriam_appiah");
 
 ?>
