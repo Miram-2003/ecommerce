@@ -1,5 +1,5 @@
 <?php
-require_once("../../product_controller.php");
+require_once("../final-ecommerce/product_controller.php");
 
 // Fetch all products
 $products = get_allproduct();
