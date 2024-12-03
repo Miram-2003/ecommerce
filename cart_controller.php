@@ -1,6 +1,6 @@
 <?php
 
-require_once("../classes/cart_class.php");
+require_once("cart_class.php");
 function add_to_cart_ctr($user_id, $product_id, $quantity, $price){
 
     $cart = new cart_class();

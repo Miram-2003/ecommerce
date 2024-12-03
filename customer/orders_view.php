@@ -86,8 +86,8 @@ $orders = get_orders($user_id);
         <div class="mb-4">
             <h5>Orders</h5>
             <div>
-                <span class="badge bg-success">Ongoing/Delivered ()</span>
-                <span class="badge bg-danger">Canceled/Returned ()</span>
+                <span class="badge bg-success">Ongoing/Delivered </span>
+                <span class="badge bg-danger">Canceled/Returned </span>
             </div>
         </div>
 
