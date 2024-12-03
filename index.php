@@ -1,13 +1,13 @@
-<?php
-// require_once("product_controller.php");
-// require_once("controllers/cart_controller.php");
-// require_once("controllers/cat_controller.php");
+<!-- <?php
+ require_once("./product_controller.php");
+ require_once("./controllers/cart_controller.php");
+ require_once("./controllers/cat_controller.php");
 
-// Fetch all products
+
 $products = get_allproduct();
 
-$cart_items = get_cart_items($user_id);
-$num =  count($cart_items);
+ $cart_items = get_cart_items($user_id);
+ $num =  count($cart_items);
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ $num =  count($cart_items);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
-    <!-- Bootstrap CSS -->
+    <! Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="css/side.css" rel ="stylesheet">
@@ -53,7 +53,7 @@ $num =  count($cart_items);
 
         .btn-custom:hover {
             background-color: #004080;
-            color: white;
+            color: white; 
         }
 
         /* Product Cards */
