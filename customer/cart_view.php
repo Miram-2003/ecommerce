@@ -2,12 +2,8 @@
 session_start();
 require_once('../settings/core.php');
 require_once("../controllers/cart_controller.php");
-<<<<<<< HEAD
+
 require_once("../controllers/product_controller.php");
-=======
-require_once("..//product_controller.php");
->>>>>>> 36ca3a85af2e2bd486847e90c534ae7039930fe5
-require_once("../controllers/cat_controller.php");
 
 
 
