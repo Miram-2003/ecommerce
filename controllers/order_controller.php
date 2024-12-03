@@ -1,6 +1,6 @@
 <?php
 
-require_once('classes/order_class.php');
+require_once('../classes/order_class.php');
 
 function create_order($invoice, $user_id, $total_price, $payment_method, $delivery_address ) {
     $order = new order_class;
@@ -29,4 +29,8 @@ function get_orders($user_id) {
     return $order->update_order_status($order_id, $status);
 
  }
+function getOrderforSeller($seller_id) {
+    $order = new order_class;
+return $order->getOrderforSeller($seller_id) ;
+}
 ?>

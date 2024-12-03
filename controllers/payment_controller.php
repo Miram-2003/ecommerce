@@ -1,5 +1,5 @@
 <?php
-require_once('classes/payment_class.php');
+require_once('../classes/payment_class.php');
 
 function recordPayment( $amt, $customer_id, $order_id, $currency, $payment_date, $mode, $reference)
 {

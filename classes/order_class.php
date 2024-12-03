@@ -1,6 +1,6 @@
               <?php
-require_once("settings/db_class.php");
-require_once("controllers/cart_controller.php");
+require_once("../settings/db_class.php");
+require_once("../controllers/cart_controller.php");
 
 class order_class extends db_connection{
   
@@ -88,5 +88,22 @@ function get_order_items($order_id) {
     return $stmt->execute();
 
 }
-}
+
+
+
+public function getOrderforSeller($seller_id) {
+  $conn = $this->db_conn();
+  $sql ="SELECT o.invoice_no, p.name, od.quantity, od.price
+        FROM orders o
+        JOIN order_items od ON o.order_id = od.order_id
+        JOIN products p ON od.product_id = p.product_id
+        WHERE p.store_id = ?";
+
+   $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $seller_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+
+}}
 ?>

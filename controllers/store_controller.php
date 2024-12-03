@@ -1,5 +1,5 @@
 <?php
-require_once("classes/store_class.php");
+require_once("../classes/store_class.php");
     function registerSeller($data) {
         $store = new store_class();
         

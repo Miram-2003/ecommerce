@@ -1,5 +1,5 @@
 <?php
-require_once("classes/product_class.php");
+require_once("../classes/product_class.php");
 
 
 function add_product_ctr($user_id, $pro_mcat, $pro_scat, $prod_name, $prod_price, $prod_des, $prod_qty, $prod_img){

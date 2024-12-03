@@ -1,5 +1,5 @@
 <?php
-include("controllers/cat_controller.php");
+include("../controllers/cat_controller.php");
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $catname = $_POST["cat"];

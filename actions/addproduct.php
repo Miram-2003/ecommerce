@@ -1,5 +1,5 @@
 <?php
-require_once("controllers/product_controller.php");
+require_once("../controllers/product_controller.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
  

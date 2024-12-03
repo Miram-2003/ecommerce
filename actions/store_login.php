@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once("controllers/store_controller.php");
+require_once("../controllers/store_controller.php");
 session_start();
 
 
