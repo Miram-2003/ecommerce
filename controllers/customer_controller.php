@@ -1,5 +1,5 @@
 <?php
-require_once("classes/customer.php");
+require_once("../classes/customer.php");
     function registerUser($data) {
         $User = new customer_class();
         

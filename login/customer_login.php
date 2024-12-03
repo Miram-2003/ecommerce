@@ -85,7 +85,7 @@ $error = $_SESSION['error'] ?? "";
                     <?php unset($_SESSION['error']); ?>
                 <?php endif; ?>
             </div>
-            <form action="/actions/customer_login.php" method="POST" enctype="multipart/form-data">
+            <form action="../actions/customer_login.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="email"><i class="fas fa-envelope"></i> Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -94,7 +94,7 @@ $error = $_SESSION['error'] ?? "";
                     <label for="password"><i class="fas fa-lock"></i> Password</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-                <button type="submit" name = "submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
+                <button type="submit" name = "submit" value = "login" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
             </form>
 
             <div class="text-center mt-3">

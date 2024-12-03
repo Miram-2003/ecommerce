@@ -1,9 +1,9 @@
 <?php
 
-require_once("controllers/customer_controller.php");
+require_once("../controllers/customer_controller.php");
 session_start();
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["submit"]) == "login") {
     unset($_SESSION['errors']);
     $error = [];
     //$error['emailexist'] = $_SESSION['exist'];
