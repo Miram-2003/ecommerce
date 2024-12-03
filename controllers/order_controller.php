@@ -29,4 +29,8 @@ function get_orders($user_id) {
     return $order->update_order_status($order_id, $status);
 
  }
+function getOrderforSeller($seller_id) {
+    $order = new order_class;
+return $order->getOrderforSeller($seller_id) ;
+}
 ?>

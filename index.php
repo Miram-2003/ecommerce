@@ -1,6 +1,6 @@
 <?php
-require_once("product_controller.php");
-require_once("cart_controller.php");
+ require_once("product_controller.php");
+ require_once("cart_controller.php");
 require_once("cat_controller.php");
 
 

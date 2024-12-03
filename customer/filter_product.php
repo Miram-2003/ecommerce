@@ -35,7 +35,7 @@ $cat =  getSubCat($id)
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/side.css">
 
-    <link rel="stylesheet" href="css/customer_index.css">
+    <link rel="stylesheet" href="../css/customer_index.css">
 </head>
 
 <body>
@@ -99,7 +99,7 @@ $cat =  getSubCat($id)
 
     <!-- Main Content -->
     <div class="container mt-5 pt-4">
-        <h2 class="text-center my-4">Projects for category: <span style="color:#004080;"><?php echo $cat ?> </span></h2>
+        <h2 class="text-center my-4">Prodouts for category: <span style="color:#004080;"><?php echo $cat ?> </span></h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
             if (!empty($products)) {
