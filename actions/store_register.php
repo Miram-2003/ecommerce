@@ -1,5 +1,5 @@
 <?php
-require_once("controllers/store_controller.php");
+require_once("../controllers/store_controller.php");
 session_start();
 
 

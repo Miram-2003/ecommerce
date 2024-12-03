@@ -1,9 +1,9 @@
 <?php
-// require_once("product_controller.php");
-// require_once("controllers/cart_controller.php");
-// require_once("controllers/cat_controller.php");
+require_once("../final-ecommerce/product_controller.php");
+require_once("../final-ecommerce/controllers/cart_controller.php");
+require_once("../final-ecommerce/controllers/cat_controller.php");
 
-// Fetch all products
+
 $products = get_allproduct();
 
 $cart_items = get_cart_items($user_id);

@@ -1,6 +1,6 @@
 <?php
 
-require_once("settings/db_class.php");
+require_once("../final-ecommerce/settings/db_class.php");
 class cart_class extends db_connection {
 
     public function get_cart_item($user_id, $product_id) {

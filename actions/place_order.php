@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-require_once("controllers/order_controller.php");
-require_once("controllers/payment_controller.php");
-require_once("controllers/cart_controller.php");
-require_once("controllers/mails.php");
+require_once("../controllers/order_controller.php");
+require_once("../controllers/payment_controller.php");
+require_once("../controllers/cart_controller.php");
+require_once("../controllers/mails.php");
 
 
 $user_id = $_SESSION['user_id'];

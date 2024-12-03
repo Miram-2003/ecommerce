@@ -1,6 +1,6 @@
 <?php
 
-require_once('classes/order_class.php');
+require_once('../classes/order_class.php');
 
 function create_order($invoice, $user_id, $total_price, $payment_method, $delivery_address ) {
     $order = new order_class;
