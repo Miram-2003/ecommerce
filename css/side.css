@@ -40,8 +40,8 @@
 .category-subcategories {
     display: none;
     position: fixed;
-    top: 150px;
-    left: 250px; /* Width of sidebar */
+    top: 100px;
+    left: 190px; /* Width of sidebar */
     width: 250px;
     height: 100vh;
     background-color: white;

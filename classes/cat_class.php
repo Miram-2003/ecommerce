@@ -240,22 +240,22 @@ class cat_class extends db_connection{
 					const subCatId = this.getAttribute("data-sub-id");
 					const subCatName = this.textContent.trim();
 					
-					console.log("Selected Subcategory:", {
-						mainCategoryId: mainCatId,
-						id: subCatId,
-						name: subCatName
-					});
-					
-					// Add your filtering or navigation logic here
-					// For example:
-					window.location.href = `../customer/filter_product.php?cat=${subCatId}`;
+					// Log the selected subcategory name
+					console.log("Selected subcategory: " + subCatName);
+	
+			
+					window.location.href = "../customer/filter_product.php?cat=" + subCatId;
+	
+				
+				
 				});
 			});
 		});
-		</script>';
+		</script>
+		';
 	
 		return $sidebarHtml;
 	}
-
+	
 }
 ?>

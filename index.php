@@ -20,7 +20,7 @@ $num =  count($cart_items);
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="css/side.css" rel ="stylesheest">
+    <link href="css/side.css" rel ="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -57,9 +57,11 @@ $num =  count($cart_items);
         }
 
         /* Product Cards */
-        .card.product-card {
-    width: 90%;
    
+.container{
+    position: relative;
+    left:8%;
+    width: 70%
 }
         .product-card {
             border: 1px solid #ddd;
@@ -97,7 +99,7 @@ $num =  count($cart_items);
         }
 
         footer {
-            margin-top: 60%;
+            margin-top: 20%;
             background-color: #004080;
             color: white;
             padding: 20px 0;
