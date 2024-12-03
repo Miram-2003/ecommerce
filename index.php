@@ -1,7 +1,7 @@
 <?php
-require_once("product_controller.php");
-require_once("controllers/cart_controller.php");
-require_once("controllers/cat_controller.php");
+// require_once("product_controller.php");
+// require_once("controllers/cart_controller.php");
+// require_once("controllers/cat_controller.php");
 
 // Fetch all products
 $products = get_allproduct();

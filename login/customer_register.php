@@ -58,7 +58,7 @@ $old = $_SESSION['old'] ?? [];
                     <h3><i class="fas fa-user-plus"></i>  Registration</h3>
                 </div>
                 
-                    <form id="registrationForm" action="../actions/customer_register.php" method="POST" enctype="multipart/form-data">
+                    <form id="registrationForm" action="actions/customer_register.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name"><i class="fas fa-user"></i> Name</label>
                             <input type="text" class="form-control" id="name" name="name" required value="<?= htmlspecialchars($old['name'] ?? '') ?>">
