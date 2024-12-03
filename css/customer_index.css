@@ -44,3 +44,7 @@
             font-size: 1rem;
             font-weight: bold;
         }
+
+        .card.product-card {
+            width: 70%;
+        }
