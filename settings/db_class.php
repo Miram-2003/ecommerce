@@ -1,99 +1,125 @@
 <?php
-// Database credentials
+//database
+
+//database credentials
 require('db_cred.php');
 
 /**
- * @version 1.1
+ *@author David Sampah
+ *@version 1.1
  */
 class db_connection
 {
-    // Properties
-    public $db = null;
-    public $results = null;
 
-    // Connect to the database
-    function db_connect()
-    {
-        // Establish connection
-        $this->db = mysqli_connect(SERVER, USERNAME, PASSWD, DATABASE);
+	//properties
+	public $db = null;
+	public $results = null;
+	
+	function db_connect()
+	{
 
-        // Test the connection
-        if (mysqli_connect_errno()) {
-            error_log("Database connection failed: " . mysqli_connect_error());
-            return false;
-        }
-        return true;
-    }
+		//connection
+		$this->db = mysqli_connect(SERVER, USERNAME, PASSWD, DATABASE);
 
-    // Get the active database connection
-    function db_conn()
-    {
-        // Connect if not already connected
-        if ($this->db === null) {
-            $this->db_connect();
-        }
+		//test the connection
+		if (mysqli_connect_errno()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
-        // Test connection
-        if ($this->db === null) {
-            error_log("Database connection is null.");
-            return false;
-        }
+	function db_conn()
+	{
 
-        return $this->db;
-    }
+		//connection
+		$this->db = mysqli_connect(SERVER, USERNAME, PASSWD, DATABASE);
 
-    // Execute a query
-    function db_query($sqlQuery)
-    {
-        // Ensure the connection is active
-        if (!$this->db_connect()) {
-            error_log("Query execution failed: No active database connection.");
-            return false;
-        }
+		//test the connection
+		if (mysqli_connect_errno()) {
+			return false;
+		} else {
+			return $this->db;
+		}
+	}
 
-        // Run the query
-        $this->results = mysqli_query($this->db, $sqlQuery);
 
-        if ($this->results === false) {
-            error_log("Query execution failed: " . mysqli_error($this->db));
-            return false;
-        }
+	
+	function db_query($sqlQuery)
+	{
 
-        return true;
-    }
+		if (!$this->db_connect()) {
+			return false;
+		} elseif ($this->db == null) {
+			return false;
+		}
 
-    // Fetch a single record
-    function db_fetch_one($sql)
-    {
-        // Run the query
-        if (!$this->db_query($sql)) {
-            return false;
-        }
+		//run query 
+		$this->results = mysqli_query($this->db, $sqlQuery);
 
-        // Return the first record
-        return mysqli_fetch_assoc($this->results);
-    }
+		if ($this->results == false) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
-    // Fetch all records
-    function db_fetch_all($sql)
-    {
-        // Run the query
-        if (!$this->db_query($sql)) {
-            return false;
-        }
+	
+	function db_query_escape_string($sqlQuery)
+	{
 
-        // Return all records
-        return mysqli_fetch_all($this->results, MYSQLI_ASSOC);
-    }
+		//run query 
+		$this->results = mysqli_query($this->db, $sqlQuery);
 
-    // Count rows in a query result
-    function db_count()
-    {
-        // Check if results are set
-        if ($this->results == null) {
-            return false;
-        }
+		if ($this->results == false) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
-        return mysqli_num_rows($this->results);
-    }
+	
+	function db_fetch_one($sql)
+	{
+
+		// if executing query returns false
+		if (!$this->db_query($sql)) {
+			return false;
+		}
+		//return a record
+		return mysqli_fetch_assoc($this->results);
+	}
+
+	//fetch all data
+	/**
+	 *get select data
+	 * all record
+	 **/
+	function db_fetch_all($sql)
+	{
+
+		// if executing query returns false
+		if (!$this->db_query($sql)) {
+			return false;
+		}
+		//return all record
+		return mysqli_fetch_all($this->results, MYSQLI_ASSOC);
+	}
+
+
+	
+	function db_count()
+	{
+
+		//check if result was set
+		if ($this->results == null) {
+			return false;
+		} elseif ($this->results == false) {
+			return false;
+		}
+
+		//return a record
+		return mysqli_num_rows($this->results);
+	}
+
 }

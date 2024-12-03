@@ -3,20 +3,14 @@
 require_once("controllers/customer_controller.php");
 session_start();
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST["submit"])) {
     unset($_SESSION['errors']);
-    $error =[];
+    $error = [];
     //$error['emailexist'] = $_SESSION['exist'];
-   $email = htmlspecialchars(trim($_POST['email']));
-   $password = htmlspecialchars(trim($_POST['password']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $password = htmlspecialchars(trim($_POST['password']));
 
-
-   
-   loginUser($email, $password);
-
-
-
-        
+    loginUser($email, $password);
 }
+
 ?>
