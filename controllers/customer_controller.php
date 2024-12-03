@@ -51,7 +51,7 @@ require_once("../classes/customer.php");
             $_SESSION['contact'] = $User['contact'];
          
            
-             header("Location: customer/customer_index.php");
+             header("Location: ../customer/customer_index.php");
              exit();
         } else {
             // Login failed, set error message

@@ -10,7 +10,7 @@ class customer_class extends db_connection
         $this->db = $ndb->db_conn();
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO `Users`( `fullName`, `email`,  `contact`, `region`, `city`,`password_hash`) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO `users`( `fullName`, `email`,  `contact`, `region`, `city`,`password_hash`) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("ssisss", $name, $email,  $phone, $region, $city,  $hashedPassword);
         return $stmt->execute();
@@ -21,7 +21,7 @@ class customer_class extends db_connection
     {
         $ndb = new db_connection();
         $con = $ndb->db_conn();
-        $sql = "SELECT COUNT(*) AS count FROM `Users` WHERE `email` = ?";
+        $sql = "SELECT COUNT(*) AS count FROM `users` WHERE `email` = ?";
 
 
         // Use the `db_query` method with prepared statements (assumes PDO or mysqli)
@@ -43,7 +43,7 @@ class customer_class extends db_connection
         $con = $ndb->db_conn();
     
         // Check if the email exists
-        $sql = "SELECT * FROM Users WHERE email = ?";
+        $sql = "SELECT * FROM users WHERE email = ?";
         $stmt = $con->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
