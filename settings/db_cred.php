@@ -5,5 +5,6 @@ define("SERVER","localhost");
 define("USERNAME", "miriam.appiah");
 define("PASSWD", "miriam2003");
 define("DATABASE", "webtech_fall2024_miriam_appiah");
+define("PORT", 442);
 
 ?>
