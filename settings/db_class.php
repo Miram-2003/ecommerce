@@ -2,7 +2,7 @@
 //database
 
 //database credentials
-require('../db_cred.php');
+require('db_cred.php');
 
 /**
  *@author David Sampah
