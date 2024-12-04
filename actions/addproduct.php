@@ -2,12 +2,7 @@
 require_once("../controllers/product_controller.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Add error logging
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
 
-    // Debug: Print out all uploaded file information
-    var_dump($_FILES);
 
     $user_id = htmlspecialchars($_POST["seller"]);
     $prod_name = htmlspecialchars($_POST["product_name"]);
@@ -75,26 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             die("Error: Invalid file type. Only JPG, JPEG, PNG, and GIF are allowed.");
         }
-    } else {
-        // Detailed file upload error reporting
-        switch ($_FILES['product_image']['error']) {
-            case UPLOAD_ERR_INI_SIZE:
-                die("The uploaded file exceeds the upload_max_filesize directive in php.ini.");
-            case UPLOAD_ERR_FORM_SIZE:
-                die("The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.");
-            case UPLOAD_ERR_PARTIAL:
-                die("The uploaded file was only partially uploaded.");
-            case UPLOAD_ERR_NO_FILE:
-                die("No file was uploaded.");
-            case UPLOAD_ERR_NO_TMP_DIR:
-                die("Missing a temporary folder.");
-            case UPLOAD_ERR_CANT_WRITE:
-                die("Failed to write file to disk.");
-            case UPLOAD_ERR_EXTENSION:
-                die("A PHP extension stopped the file upload.");
-            default:
-                die("Unknown upload error: " . $_FILES['product_image']['error']);
-        }
-    }
+    } 
 }
 ?>

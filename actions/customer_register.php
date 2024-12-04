@@ -1,9 +1,7 @@
 <?php
-
-require_once("../controllers/customer_controller.php");
 session_start();
-
-
+require_once("../controllers/customer_controller.php");
+echo "jkl";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     unset($_SESSION['errors']);
     $error =[];
@@ -20,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'confirmpass' => htmlspecialchars(trim($_POST['confirm_password'])),
         
     ];
+    echo "jkl";
 
 
     if (empty($data['name']) || $data['name']== ' ') {
@@ -68,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         }
 
-
+        echo "jkl";
     
         if (!empty($error)) {
            // var_dump($error);
@@ -76,17 +75,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['old'] = $data;
           ;
             
-           header("Location: login/customer_register.php");
+           header("Location: ../login/customer_register.php");
             exit;
         }else{
-          
+            echo "jkl";
         
-           registerSeller($data);
-        
+           registerUser($data);
+           echo "jkl";
         }
 
     }else{
-        echo "M.I.R.2003,iam";
+     
 
     }
 

@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         if (empty($errors['image'])) {
             // Save the uploaded file
-            $uploadDir ="../storeimages/";
+            $uploadDir ="../uploads/";
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0777, true); // Create the directory if not exists
             }

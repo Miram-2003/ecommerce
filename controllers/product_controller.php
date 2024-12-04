@@ -50,4 +50,9 @@ function get_product_by_cat($id){
     return $result;
 }
 
+
+function updateproduct($name, $des, $price, $qty, $id){
+    $a_product = new product_class();
+    return $a_product->updateallProdcut($name, $des, $price, $qty, $id);
+}
 ?>

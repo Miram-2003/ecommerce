@@ -28,10 +28,10 @@ require_once("../classes/customer.php");
         );
 
         if ($result) {
-            header('Location:./login/customer_login.php');
+            header('Location:../login/customer_login.php');
             exit();
         } else {
-            header('Location: .../login/customer_register.php');
+            header('Location: ../login/customer_register.php');
             exit();
         }
     }

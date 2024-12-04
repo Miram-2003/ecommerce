@@ -109,7 +109,7 @@ function get_order_items($order_id) {
 
 public function getOrderforSeller($seller_id) {
   $conn = $this->db_conn();
-  $sql ="SELECT o.invoice_no, p.name, od.quantity, od.price
+  $sql ="SELECT o.invoice_no, o.status, p.name, od.quantity, od.price
         FROM orders o
         JOIN order_items od ON o.order_id = od.order_id
         JOIN products p ON od.product_id = p.product_id

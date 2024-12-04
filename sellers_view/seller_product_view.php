@@ -198,7 +198,7 @@ if (isset($_GET['edit_product_id'])) {
                                 <tr>
                                     <td><?php echo $index + 1; ?></td>
                                     <td>
-                                        <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" style="width: 100px; height: 100px; object-fit: cover;">
+                                        <img src="../uploads/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" style="width: 100px; height: 100px; object-fit: cover;">
                                     </td>
                                     <td><?php echo htmlspecialchars($product['name']); ?></td>
                                     <td><?php echo htmlspecialchars($product['description']); ?></td>
@@ -208,7 +208,7 @@ if (isset($_GET['edit_product_id'])) {
                                     <td><?php echo htmlspecialchars($cat_sub); ?></td>
                                     <td>
                                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal-<?php echo $product['product_id']; ?>">Edit</button>
-                                        <a href="delete_product.php?product_id=<?php echo $product['product_id']; ?>" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="../actions/delete_product.php?product_id=<?php echo $product['product_id']; ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
 

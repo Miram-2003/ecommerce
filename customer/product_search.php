@@ -17,7 +17,7 @@ if (isset($_GET['search'])) {
     $search_query = trim($_GET['search']);
 
 }
-$cart_items = get_cart_items($user_id);
+$cart_items = get_cart_items($id);
 $num =  count($cart_items);
 
 $products = searchItem($search_query);
@@ -57,10 +57,10 @@ $products = searchItem($search_query);
                 
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                        <a class="nav-link" href="../home.php"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-info-circle"></i> About</a>
+                        <a class="nav-link" href="../index"><i class="fas fa-info-circle"></i> Shop</a>
                     </li>
                 </ul>
 

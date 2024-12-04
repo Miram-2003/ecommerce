@@ -21,6 +21,8 @@ $products = get_allproduct();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="css/side.css" rel ="stylesheet">
+    <link href="css/navbr.css" rel ="stylesheet">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -109,7 +111,7 @@ $products = get_allproduct();
 </head>
 
 <body>
-    <!-- Fixed Top Navigation Bar -->
+    
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Posify</a>
@@ -117,19 +119,28 @@ $products = get_allproduct();
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    
+                
+                 
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../final-ecommerce/login/register.php">Sell with Us</a>
+                        <a class="nav-link" href="home.php"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="../final-ecommerce/login/customer_login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="../final-ecommerce/login/customer_register.php">Register</a>
+                        <a class="nav-link" href="index.php"><i class="fas fa-info-circle"></i> Shop</a>
                     </li>
                 </ul>
-                <form class="d-flex ms-3" action = "../final-ecommerce/customer/product_search.php" method = "GET">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login/register.php">Sell with Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="./login/customer_login.php">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="./login/customer_register.php">Register</a>
+                    </li>
+                </ul>
+                <form class="d-flex ms-3" action = "./customer/product_search.php" method = "GET">
                     <input class="form-control me-2" type="search" placeholder="Search" name = 'search' aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
@@ -149,13 +160,13 @@ $products = get_allproduct();
             if (!empty($products)) {
                 foreach ($products as $product) {
                     ?>
-                    <div class="col">
+                    <div class="col">   
                         <div class="card product-card">
                             <img src="uploads/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                             <div class="card-body">
                                 <h5 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h5>
                                 <p class="product-price">$<?php echo number_format($product['price'], 2); ?></p>
-                                <a href="../final-ecommerce/login/customer_login.php" class="btn btn-custom btn-sm">View Details</a>
+                                <a href="./customer/product_detail.php?id=<?php echo $product['product_id']; ?>" class="btn btn-custom btn-sm">View Details</a>
                             </div>
                         </div>
                     </div>

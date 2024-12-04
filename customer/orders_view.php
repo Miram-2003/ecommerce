@@ -45,10 +45,10 @@ $num =  count($cart_items);
                 <!-- Left-aligned links -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                        <a class="nav-link" href="../home.php"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-info-circle"></i> About</a>
+                        <a class="nav-link" href="../index.php"><i class="fas fa-info-circle"></i> Shop</a>
                     </li>
                 </ul>
 

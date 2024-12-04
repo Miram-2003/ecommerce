@@ -3,6 +3,10 @@
 session_start();
 require_once("../controllers/cart_controller.php");
 
+require_once("../settings/core.php");
+
+
+check_user_login();
 // Ensure the user is logged in
 if (!isset($_SESSION['user_id'])) {
     die("Please log in to add items to your cart.");

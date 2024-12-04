@@ -59,6 +59,16 @@ class product_class extends db_connection{
 
 	}
 
+
+	public function updateallProdcut($name, $des, $price, $qty, $id){
+		$ndb = new db_connection();
+		$sql = "UPDATE `products` SET `name`='$name',`description`='$des',`price`='$price',`qty`='$qty' WHERE `product_id` = '$id' ";
+		$update_result = $this->db_query($sql);
+
+		return $update_result;
+	}
+
+	
 	public function updateProdcut($qty, $id){
 		$ndb = new db_connection();
 		$sql = "UPDATE `products` SET `qty` = '$qty' WHERE `product_id` = $id";
