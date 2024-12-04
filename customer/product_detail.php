@@ -1,11 +1,9 @@
 <?php
+session_start();
 require_once("../controllers/product_controller.php");
 require_once("../controllers/cat_controller.php");
-
-session_start();
 require_once('../settings/core.php');
 
-check_user_login();
 $id = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
 $email  = $_SESSION['email'];
@@ -18,6 +16,8 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
 $product_id = intval($_GET['id']);
 
+$cart_items = get_cart_items($user_id);
+$num =  count($cart_items);
 
 // Fetch the product details using the controller function
 $product = get_a_product_ctr($product_id);

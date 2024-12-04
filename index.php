@@ -118,15 +118,7 @@ $products = get_allproduct();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item me-3">
-                        <a class="nav-link cart-container" href="../customer/cart_view.php">
-                            <i class="fas fa-shopping-cart"></i>
-                            <?php if ($num > 0): ?>
-                                <span class="cart-badge"><?php echo $num; ?></span>
-                            <?php endif; ?>
-                            Cart
-                        </a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="../final-ecommerce/login/register.php">Sell with Us</a>
                     </li>

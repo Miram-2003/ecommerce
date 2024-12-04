@@ -5,7 +5,7 @@ require_once('../controllers/order_controller.php');
 require_once('../controllers/product_controller.php');
 require_once('../settings/core.php');
 require_once("../controllers/cat_controller.php");
-check_user_login();
+
 
 
 $name = $_SESSION['user_name'];
@@ -92,7 +92,7 @@ $num =  count($cart_items);
         </div>
     </nav>
 
-    <div class="container mt-3 pt-4">
+    <div class="container  pt-4">
    
         <?php echo getAllsubcat(); ?>
     </div>

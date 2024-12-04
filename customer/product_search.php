@@ -3,6 +3,7 @@ session_start();
 require_once("../controllers/search_controller.php");
 require_once("../controllers/cat_controller.php");
 require_once("../settings/core.php");
+require_once("../controllers/cart_controller.php");
 
 
 $id = $_SESSION['user_id'];
@@ -16,7 +17,8 @@ if (isset($_GET['search'])) {
     $search_query = trim($_GET['search']);
 
 }
-
+$cart_items = get_cart_items($user_id);
+$num =  count($cart_items);
 
 $products = searchItem($search_query);
 ?>
@@ -33,7 +35,9 @@ $products = searchItem($search_query);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/navbr.css">
     <link rel="stylesheet" href="../css/customer_index.css">
+
     <link rel="stylesheet" href="../css/side.css">
+    
 </head>
 
 <body>
@@ -69,7 +73,15 @@ $products = searchItem($search_query);
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>
-                  
+                    <li class="nav-item me-3">
+                        <a class="nav-link cart-container" href="../customer/cart_view.php">
+                            <i class="fas fa-shopping-cart"></i>
+                            <?php if ($num > 0): ?>
+                                <span class="cart-badge"><?php echo $num; ?></span>
+                            <?php endif; ?>
+                            Cart
+                        </a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle text-white" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <strong><?php echo htmlspecialchars($name); ?></strong>
