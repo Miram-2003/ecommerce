@@ -9,6 +9,7 @@ require_once("../controllers/cat_controller.php");
 
 
 $name = $_SESSION['user_name'];
+$user_id= $_SESSION["user_id"];
 
 
 

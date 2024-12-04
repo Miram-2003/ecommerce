@@ -18,7 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file_name = basename($_FILES['product_image']['name']); // Original file name
         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION)); // File extension
         $allowed_exts = ['jpg', 'jpeg', 'png', 'gif']; 
-
+        $file_error = $_FILES['product_image']['error'];
+        echo "File error code: " . $_FILES['product_image']['error'];
         // Validate file type
         if (in_array($file_ext, $allowed_exts)) {
      
@@ -28,10 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
+            
 
             
             if (move_uploaded_file($file_tmp, $upload_path)) {
-              
+                var_dump($file_tmp);
                 $result = add_product_ctr($user_id, $pro_mcat, $pro_scat, $prod_name, $prod_price, $prod_des, $prod_qty, $new_file_name);
                 if ($result) {
                   
@@ -40,8 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     echo "Error: Failed to save product data.";
                 }
-            } else {
-                echo "Error: Failed to upload the image.";
+            }else {
+                echo "File error code: " . $_FILES['product_image']['error'];
+                exit();
             }
         } else {
             echo "Error: Invalid file type. Only JPG, JPEG, PNG, and GIF are allowed.";

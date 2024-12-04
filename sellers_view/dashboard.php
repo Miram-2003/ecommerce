@@ -136,7 +136,7 @@ $img = $_SESSION['image'];
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="../sellers_view/seller_order.php">
+                <a class="nav-link" href="../sellers_view/orders.php">
                     <i class="fas fa-shopping-cart"></i> Orders
                 </a>
             </li>

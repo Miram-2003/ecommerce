@@ -8,6 +8,10 @@ $user_id = intval($_SESSION['user_id']);
 $name = $_SESSION['user_name'];
 $email  = $_SESSION['email'];
 $orders = get_orders($user_id);
+
+$cart_items = get_cart_items($user_id);
+$num =  count($cart_items);
+
 ?>
 
 <!DOCTYPE html>
@@ -57,11 +61,15 @@ $orders = get_orders($user_id);
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>
-                    <!-- Cart -->
                     <li class="nav-item me-3">
-                        <a class="nav-link" href="../customer/cart_view.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+                        <a class="nav-link cart-container" href="../customer/cart_view.php">
+                            <i class="fas fa-shopping-cart"></i>
+                            <?php if ($num > 0): ?>
+                                <span class="cart-badge"><?php echo $num; ?></span>
+                            <?php endif; ?>
+                            Cart
+                        </a>
                     </li>
-                    <!-- User Dropdown -->
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle text-white" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <strong><?php echo htmlspecialchars($name); ?></strong>

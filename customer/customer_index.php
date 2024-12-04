@@ -13,8 +13,9 @@ $email  = $_SESSION['email'];
 // Fetch all products
 $products = get_allproduct();
 
-$cart_items = get_cart_items($user_id);
+$cart_items = get_cart_items($id);
 $num =  count($cart_items);
+var_dump($num);
 
 ?>
 
@@ -70,7 +71,7 @@ $num =  count($cart_items);
                     <li class="nav-item me-3">
                         <a class="nav-link cart-container" href="../customer/cart_view.php">
                             <i class="fas fa-shopping-cart"></i>
-                            <?php if ($num > 0): ?>
+                            <?php if ($num >0): ?>
                                 <span class="cart-badge"><?php echo $num; ?></span>
                             <?php endif; ?>
                             Cart
