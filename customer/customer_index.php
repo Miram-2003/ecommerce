@@ -29,6 +29,13 @@ $products = get_allproduct();
     <link rel="stylesheet" href="../css/side.css">
 
     <link rel="stylesheet" href="../css/customer_index.css">
+    <style>
+    .container{
+    position: relative;
+    left:8%;
+    width: 70%;
+}
+   </style> 
 </head>
 
 <body>

@@ -61,7 +61,7 @@ $products = get_allproduct();
 .container{
     position: relative;
     left:8%;
-    width: 70%
+    width: 70%;
 }
         .product-card {
             border: 1px solid #ddd;

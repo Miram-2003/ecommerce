@@ -27,6 +27,13 @@ $total_price = ($total_price + 50 + 20);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/confirm_order.css">
+   <style>
+    .container{
+    position: relative;
+    left:8%;
+    width: 70%;
+}
+   </style> 
 
 </head>
 

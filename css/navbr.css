@@ -22,17 +22,13 @@ footer {
     padding: 20px 0;
     text-align: center;
 }
-.container{
-    position: relative;
-    left:8%;
-    width: 70%
-}
+
   
 
-.cart-container {
+/* .cart-container {
     position: relative;
     display: inline-block;
-}
+} */
 .cart-badge {
     position: absolute;
     top: -5px;
