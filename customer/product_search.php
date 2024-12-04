@@ -33,7 +33,7 @@ $products = searchItem($search_query);
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/navbr.css">
+    <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/customer_index.css">
 
     <link rel="stylesheet" href="../css/side.css">
@@ -41,20 +41,20 @@ $products = searchItem($search_query);
 </head>
 
 <body>
-    <!-- Fixed Top Navigation Bar -->
+   
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
         <div class="container-fluid">
-            <!-- Brand -->
+           
             <a class="navbar-brand" href="#">POSify</a>
 
-            <!-- Toggler for Mobile View -->
+          
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Navbar Content -->
+       
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Left-aligned links -->
+                
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
@@ -64,9 +64,9 @@ $products = searchItem($search_query);
                     </li>
                 </ul>
 
-                <!-- Right-aligned links -->
+             
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <!-- Search Bar -->
+                    
                     <li class="nav-item me-3">
                         <form class="d-flex" action = "../customer/product_search.php" method = "GET">
                             <input class="form-control me-2" type="search" placeholder="Search by product or category" name = 'search' aria-label="Search">

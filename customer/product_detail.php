@@ -3,6 +3,7 @@ session_start();
 require_once("../controllers/product_controller.php");
 require_once("../controllers/cat_controller.php");
 require_once('../settings/core.php');
+require_once("../controllers/cart_controller.php");
 
 $id = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
@@ -21,7 +22,8 @@ $num =  count($cart_items);
 
 // Fetch the product details using the controller function
 $product = get_a_product_ctr($product_id);
-
+$cart_items = get_cart_items($user_id);
+$num =  count($cart_items);
 $cat_man = getMainCat($product['main_cat_id']);
 $cat_sub = getSubCat($product['sub_cat_id']);?>
 
@@ -37,6 +39,7 @@ $cat_sub = getSubCat($product['sub_cat_id']);?>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/product_detail.css">
+
 </head>
 
 <body>
@@ -71,11 +74,15 @@ $cat_sub = getSubCat($product['sub_cat_id']);?>
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                 </li>
-                <!-- Cart -->
-                <li class="nav-item me-3" action = "../customer/product_search.php" method = "GET">
-                    <a class="nav-link" href="../customer/cart_view.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-                </li>
-                <!-- User Dropdown -->
+                <li class="nav-item me-3">
+                        <a class="nav-link cart-container" href="../customer/cart_view.php">
+                            <i class="fas fa-shopping-cart"></i>
+                            <?php if ($num > 0): ?>
+                                <span class="cart-badge"><?php echo $num; ?></span>
+                            <?php endif; ?>
+                            Cart
+                        </a>
+                    </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
                         <strong><?php echo $name; ?></strong>
@@ -89,7 +96,13 @@ $cat_sub = getSubCat($product['sub_cat_id']);?>
         </div>
     </div>
 </nav>
-    <!-- Main Content -->
+<div class="container mt-5 pt-4">
+   
+   <?php echo getAllsubcat(); ?>
+</div>
+
+
+
     <div class="container mt-5 pt-5">
     <div class="row">
         <div class="col-md-6">
