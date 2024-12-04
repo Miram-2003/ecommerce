@@ -2,6 +2,7 @@
 session_start();
 require_once("../controllers/product_controller.php");
 require_once("../controllers/cat_controller.php");
+require_once("../controllers/cart_controller.php");
 
 require_once('../settings/core.php');
 check_user_login();
@@ -27,15 +28,8 @@ $products = get_allproduct();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/side.css">
-
     <link rel="stylesheet" href="../css/customer_index.css">
-    <style>
-    .container{
-    position: relative;
-    left:8%;
-    width: 70%;
-}
-   </style> 
+    
 </head>
 
 <body>

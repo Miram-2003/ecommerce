@@ -25,10 +25,10 @@ footer {
 
   
 
-/* .cart-container {
+.cart-container {
     position: relative;
     display: inline-block;
-} */
+}
 .cart-badge {
     position: absolute;
     top: -5px;
@@ -44,4 +44,10 @@ footer {
     font-size: 12px;
     padding: 2px;
     line-height: 1;
+}
+
+.container{
+    position: relative;
+    left:8%;
+    width: 70%;
 }

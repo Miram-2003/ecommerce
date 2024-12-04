@@ -1,9 +1,10 @@
 <?php
 session_start();
+require_once("../controllers/cart_controller.php");
 require_once('../controllers/order_controller.php');
 require_once('../controllers/product_controller.php');
 require_once('../settings/core.php');
-
+require_once("../controllers/cat_controller.php");
 check_user_login();
 
 
@@ -16,6 +17,9 @@ if (isset($_GET['order_id'])) {
     $order = get_order_details($order_id);
     $order_details = get_order_items($order_id);
 }
+
+$cart_items = get_cart_items($user_id);
+$num =  count($cart_items);
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +33,7 @@ if (isset($_GET['order_id'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/navbr.css">
     <link rel="stylesheet" href="../css/order_details.css">
+    <link rel="stylesheet" href= "../css/side.css">
 
 </head>
 
@@ -36,17 +41,15 @@ if (isset($_GET['order_id'])) {
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #004080;">
         <div class="container-fluid">
-            <!-- Brand -->
+        
             <a class="navbar-brand" href="#">POSify</a>
 
-            <!-- Toggler for Mobile View -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Navbar Content -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Left-aligned links -->
+               
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
@@ -56,20 +59,25 @@ if (isset($_GET['order_id'])) {
                     </li>
                 </ul>
 
-                <!-- Right-aligned links -->
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <!-- Search Bar -->
+                  
                     <li class="nav-item me-3" action="../customer/product_search.php" method="GET">
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search by product or category" name='search' aria-label="Search">
                             <button class="btn btn-outline-light" type="submit">Search</button>
                         </form>
                     </li>
-                    <!-- Cart -->
+                    
                     <li class="nav-item me-3">
-                        <a class="nav-link" href="../customer/cart_view.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+                        <a class="nav-link cart-container" href="../customer/cart_view.php">
+                            <i class="fas fa-shopping-cart"></i>
+                            <?php if ($num > 0): ?>
+                                <span class="cart-badge"><?php echo $num; ?></span>
+                            <?php endif; ?>
+                            Cart
+                        </a>
                     </li>
-                    <!-- User Dropdown -->
+                    
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle text-white" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <strong><?php echo htmlspecialchars($name); ?></strong>
@@ -83,6 +91,12 @@ if (isset($_GET['order_id'])) {
             </div>
         </div>
     </nav>
+
+    <div class="container mt-3 pt-4">
+   
+        <?php echo getAllsubcat(); ?>
+    </div>
+    
     <div class="container mt-5" style=" margin-top: 8rem !important;">
         <a href="../customer/orders_view.php"><i class="fas fa-arrow-left fa-2x"></i></a>
         <span style="margin-left: 10px; font-size:x-large;"><b>Order Details</b></span>
