@@ -108,7 +108,7 @@ var_dump($num);
                     ?>
                     <div class="col">
                         <div class="card product-card">
-                            <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top">
+                            <img src="../uploads/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h5>
                                 <p class="product-price">GHC<?php echo number_format($product['price'], 2); ?></p>

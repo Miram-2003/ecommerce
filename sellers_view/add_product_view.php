@@ -119,7 +119,7 @@ $img = $_SESSION['image'];
 
                     <div class="dropdown">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../storeimages/<?php echo $img; ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                            <img src="../uploads/<?php echo $img; ?>" alt="" width="32" height="32" class="rounded-circle me-2">
                             <strong><?php echo $name; ?></strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">

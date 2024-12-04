@@ -112,7 +112,7 @@ $num =  count($cart_items);
                     $product = get_a_product_ctr($product_id); // Corrected function call
 
                     // Ensure the product has an image
-                    $product_image = !empty($product['img']) ? "../product_images/" . $product['img'] : 'path/to/default/image.jpg'; // Default image if none exists
+                    $product_image = !empty($product['img']) ? "../uploads/" . $product['img'] : 'path/to/default/image.jpg'; // Default image if none exists
 
                     // Display order information
                     echo '<div class="order-item d-flex align-items-start">';

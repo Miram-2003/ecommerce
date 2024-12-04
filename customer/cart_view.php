@@ -118,7 +118,7 @@ $num =  count($cart_items);
                     <?php if (!empty($cart_items)) { ?>
                         <?php foreach ($cart_items as $item) { ?>
                             <div class="cart-item d-flex align-items-center">
-                                <img src="../product_images/<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" style="width: 100px; height: 100px; object-fit: cover; margin-right: 20px;">
+                                <img src="../uploads/<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" style="width: 100px; height: 100px; object-fit: cover; margin-right: 20px;">
                                 <div class="flex-grow-1">
                                     <h5><?php echo htmlspecialchars($item['product_name']); ?></h5>
                                     <p class="mb-1">

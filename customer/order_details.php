@@ -119,7 +119,7 @@ $num =  count($cart_items);
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start">
                             <div class="product-info">
-                                <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="product-image">
+                                <img src="../uploads/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="product-image">
                                 <div>
                                     <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
                                     <p>QTY: <?php echo htmlspecialchars($item['quantity']); ?></p>

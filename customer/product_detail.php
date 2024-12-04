@@ -106,7 +106,7 @@ $cat_sub = getSubCat($product['sub_cat_id']);?>
     <div class="container mt-5 pt-5">
     <div class="row">
         <div class="col-md-6">
-            <img src="../product_images/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid">
+            <img src="../uploads/<?php echo htmlspecialchars($product['img']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid">
         </div>
         <div class="col-md-6">
             <div class="product-detail">
