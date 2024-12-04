@@ -179,8 +179,8 @@ $total_price = ($total_price + 50 + 20);
                                 <div class="mb-3">
                                     <label for="payment_method" class="form-label">Payment Method</label>
                                     <select class="form-select" id="payment_method" name="payment_method" required>
-                                        <option value="cash_on_delivery">Cash on Delivery</option>
-                                        <option value="card_payment">Card Payment</option>
+                                        <option value="cash on delivery">Cash on Delivery</option>
+                                        <option value="card payment">Card Payment</option>
                                     </select>
                                 </div>
 
@@ -208,7 +208,7 @@ $total_price = ($total_price + 50 + 20);
 
             const paymentMethod = document.getElementById('payment_method').value;
 
-            if (paymentMethod === 'card_payment') {
+            if (paymentMethod === 'card payment') {
                 // Trigger the Paystack payment if 'card_payment' is selected
                 payWithPaystack();
             } else {
